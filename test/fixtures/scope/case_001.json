@@ -1,0 +1,52 @@
+{
+  "scope/case_001.js": [
+    {
+      "file": "scope/case_001.js",
+      "exportsFn": "hello0",
+      "docSrc": "\n @api {get} /api/hello0\n ",
+      "docInfo": {
+        "api": {
+          "token": "api",
+          "methods": ["get"],
+          "url": "/api/hello0"
+        }
+      }
+    },
+    {
+      "file": "scope/case_001.js",
+      "exportsFn": "hello1",
+      "docSrc": "\n @api {get} /api/hello1\n ",
+      "docInfo": {
+        "api": {
+          "token": "api",
+          "methods": ["get"],
+          "url": "/api/hello1"
+        }
+      }
+    },
+    {
+      "file": "scope/case_001.js",
+      "exportsFn": "hello2",
+      "docSrc": "\n @api {get} /api/hello2\n ",
+      "docInfo": {
+        "api": {
+          "token": "api",
+          "methods": ["get"],
+          "url": "/api/hello2"
+        }
+      }
+    },
+    {
+      "file": "scope/case_001.js",
+      "exportsFn": "hello3",
+      "docSrc": "\n @api {get} /api/hello3\n ",
+      "docInfo": {
+        "api": {
+          "token": "api",
+          "methods": ["get"],
+          "url": "/api/hello3"
+        }
+      }
+    }
+  ]
+}

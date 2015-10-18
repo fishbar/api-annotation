@@ -1,0 +1,35 @@
+{
+  "syntax/case_001.js": [
+    {
+      "file": "syntax/case_001.js",
+      "exportsFn": "hello",
+      "docSrc": "\n @api {get} /api/${version}/hello\n @query\n   id {Object}\n   name\n\n @body:json\n\n @success:json\n   {}\n @failure:json\n   {error: ''}\n ",
+      "docInfo": {
+        "api": {
+          "token": "api",
+          "methods": ["get"],
+          "url": "/api/${version}/hello"
+        },
+        "body": {
+          "token": "body",
+          "type": "json",
+          "value": "\n "
+        },
+        "query": {
+          "token": "query",
+          "value": "   id {Object}\n   name\n\n "
+        },
+        "success": [{
+          "token": "success",
+          "type": "json",
+          "value": "   {}\n "
+        }],
+        "failure": [{
+          "token": "failure",
+          "type": "json",
+          "value": "   {error: ''}\n "
+        }]
+      }
+    }
+  ]
+}

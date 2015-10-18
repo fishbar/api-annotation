@@ -1,0 +1,5 @@
+/test
+/lib/comment_parser.pegjs
+.jscsrc
+.gitignore
+/syntax.js

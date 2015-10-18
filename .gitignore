@@ -1,0 +1,13 @@
+run
+npm-debug.log
+logs
+node_modules
+config/rc
+config/beta
+config/release
+config/dev
+*.db
+test/case/all.js
+wwwroot/js/test/case/all.js
+.DS_Store
+.idea
