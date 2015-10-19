@@ -11,8 +11,7 @@ var parser = require('./lib/parser');
  * 编译整个目录的文件
  * @param  {String}   fdir    fdir
  * @param  {Object}   options  {routerFile, docFile}
- * @param  {Function} callback [description]
- * @return {[type]}            [description]
+ * @param  {Function} callback
  */
 function processDir(fdir, options, callback, ifsub) {
   var files = fs.readdirSync(fdir);
@@ -125,8 +124,7 @@ function genRouterFile(result, savePath) {
     });
   });
   var routerFileCnt = ['// do not modify this file, genaratered by api-annotation'];
-  routerFileCnt.push('var ctrls
-   = {');
+  routerFileCnt.push('var ctrls = {');
   routerFileCnt.push(requires.join(',\n'));
   routerFileCnt.push('};');
   routerFileCnt.push('module.exports = function (router) {\n');
