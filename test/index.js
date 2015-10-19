@@ -7,9 +7,12 @@
 var testMod = require('../index');
 var expect = require('expect.js');
 var path = require('path');
+var fs = require('fs');
 
 describe('index.js', function () {
-
+  after(function () {
+    fs.unlinkSync(path.join(__dirname, './auto_router.js'));
+  });
   describe('index.resolvePath()', function () {
     it('should work fine', function () {
       var result;
@@ -20,12 +23,35 @@ describe('index.js', function () {
     });
   });
   describe('index.processDir()', function () {
+    var mockRouter = {
+      _cache: {}
+    };
+    mockRouter.get = mockRouter.post =
+      mockRouter.delete = mockRouter.put =
+      mockRouter.patch = function (path, fn) {
+        this._cache[path] = fn;
+      };
     it('should work fine', function () {
+      var rfile = path.join(__dirname, 'auto_router.js');
       testMod.processDir(path.join(__dirname, 'fixtures/syntax'), {
-        routerFile: __dirname
+        routerFile: rfile
       }, function (err, result) {
         expect(err).to.be(null);
-        expect(result['./fixtures/syntax/case_001.js']).to.be.an.Array;
+        require(rfile)(mockRouter);
+        // expect(result.router['./fixtures/syntax/case_001.js']).to.be.an.Array;
+      });
+    });
+    it('should work fine while some of the api annotation error', function () {
+      var rfile = path.join(__dirname, 'auto_router.js');
+      testMod.processDir(path.join(__dirname, './mock'), {
+        routerFile: rfile
+      }, function (err, result) {
+        expect(err.length).to.be(1);
+        expect(err[0].message).to.match(/http method not allowed/);
+        expect(err[0].file).to.be('./mock/ctrl1.js');
+        expect(err[0].message).to.match(/Line 4: http method not allowed: unknow/);
+        require(rfile)(mockRouter);
+        // expect(result.router['./fixtures/syntax/case_001.js']).to.be.an.Array;
       });
     });
   });

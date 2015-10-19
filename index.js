@@ -36,7 +36,7 @@ function processDir(fdir, options, callback) {
       }
       processFile(tmp, options, function (err, res) {
         if (err) {
-          errors.push(err);
+          errors = errors.concat(err);
         }
         Object.keys(res).forEach(function (f) {
           result[f] = res[f];
@@ -44,7 +44,12 @@ function processDir(fdir, options, callback) {
       });
     }
   });
-  callback(errors.length ? errors : null, result);
+  var routerFile = genRouterFile(result, options.routerFile);
+  // genDocFile();
+  callback(errors.length ? errors : null, {
+    router: routerFile,
+    doc: ''
+  });
 };
 
 /**
@@ -92,6 +97,43 @@ function resolvePath(targetFile, requireFile) {
   }
   relPath.push(requireFile.join('/'));
   return relPath.join('');
+}
+
+function genRouterFile(result, savePath) {
+  var requires = [];
+  var routers = [];
+  var files = Object.keys(result);
+  files.forEach(function (file) {
+    requires.push('"' + file + '": require("' + file + '")');
+    var tmp = result[file];
+    tmp.forEach(function (api) {
+      var exportsFn = api.exportsFn;
+      var apiPath = api.docInfo.api.url;
+      var methods = api.docInfo.api.methods;
+      if (!apiPath) {
+        return;
+      }
+      methods.forEach(function (method) {
+        routers.push(
+          'router.' + method + '("' + apiPath + '", ' +
+          'ctrls["' + file + '"].' + exportsFn + ');'
+        );
+      });
+    });
+  });
+  var routerFileCnt = ['// do not modify this file, genaratered by api-annotation'];
+  routerFileCnt.push('var ctrls = {');
+  routerFileCnt.push(requires.join(',\n'));
+  routerFileCnt.push('};');
+  routerFileCnt.push('module.exports = function (router) {\n');
+  routerFileCnt.push(routers.join('\n'));
+  routerFileCnt.push('\n};\n');
+  var routerFile = routerFileCnt.join('\n');
+
+  if (savePath) {
+    fs.writeFileSync(savePath, routerFile);
+  }
+  return routerFile;
 }
 
 exports.resolvePath = resolvePath;

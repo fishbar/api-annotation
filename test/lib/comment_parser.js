@@ -231,5 +231,21 @@ describe('lib/comment_parser', function () {
       expect(result[1].value.trim()).to.match(/@@/);
       expect(result[2].value.trim()).to.be('');
     });
+    it('should work fine', function () {
+      var str = `
+        @error:xml test
+        @error
+        @@
+        @
+        @error
+      `;
+      var result = testMod.parse(str);
+      expect(result.length).to.be(3);
+      expect(result[0].token).to.be('failure');
+      expect(result[0].type).to.be('xml');
+      expect(result[0].value.trim()).to.be('test');
+      expect(result[1].value.trim()).to.match(/@@/);
+      expect(result[2].value.trim()).to.be('');
+    });
   });
 });
