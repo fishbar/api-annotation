@@ -14,7 +14,7 @@ var parser = require('./lib/parser');
  * @param  {Function} callback [description]
  * @return {[type]}            [description]
  */
-function processDir(fdir, options, callback) {
+function processDir(fdir, options, callback, ifsub) {
   var files = fs.readdirSync(fdir);
   var errors = [];
   var result = {};
@@ -29,7 +29,7 @@ function processDir(fdir, options, callback) {
         Object.keys(res).forEach(function (f) {
           result[f] = res[f];
         });
-      });
+      }, true);
     } else {
       if (!/\.js$/.test(tmp)) {
         return;
@@ -44,6 +44,9 @@ function processDir(fdir, options, callback) {
       });
     }
   });
+  if (ifsub) {
+    return callback(errors.length ? errors : null, result);
+  }
   var routerFile = genRouterFile(result, options.routerFile);
   // genDocFile();
   callback(errors.length ? errors : null, {
@@ -122,7 +125,8 @@ function genRouterFile(result, savePath) {
     });
   });
   var routerFileCnt = ['// do not modify this file, genaratered by api-annotation'];
-  routerFileCnt.push('var ctrls = {');
+  routerFileCnt.push('var ctrls
+   = {');
   routerFileCnt.push(requires.join(',\n'));
   routerFileCnt.push('};');
   routerFileCnt.push('module.exports = function (router) {\n');
