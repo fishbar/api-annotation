@@ -14,13 +14,14 @@
  *   id {String} description
  *
  * @query
- *   limit
+ *   limit {}
  *   search {String[]} must be urlencoded
  *
- * @body +json
- *   limit
+ * @body:json
+ *   name {object}
+ *   version
  *
- * @success description
+ * @success:json
  *
  * @success description
  *

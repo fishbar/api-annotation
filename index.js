@@ -25,7 +25,7 @@ function processDir(fdir, options, callback, ifsub) {
         if (errs && errs.length) {
           errors = errors.concat(errs);
         }
-        Object.keys(res).forEach(function (f) {
+        res && Object.keys(res).forEach(function (f) {
           result[f] = res[f];
         });
       }, true);
@@ -37,7 +37,7 @@ function processDir(fdir, options, callback, ifsub) {
         if (err) {
           errors = errors.concat(err);
         }
-        Object.keys(res).forEach(function (f) {
+        res && Object.keys(res).forEach(function (f) {
           result[f] = res[f];
         });
       });

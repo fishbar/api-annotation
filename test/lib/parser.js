@@ -13,6 +13,7 @@ describe('lib/parser', function () {
   describe('#parse()', function () {
     var dirs = fs.readdirSync(path.join(__dirname, '../fixtures'));
     dirs.forEach(function (category) {
+      // if (category !== 'syntax') return;
       var list = fs.readdirSync(path.join(__dirname, '../fixtures', category));
       list.sort();
       list.forEach(function (file) {
@@ -30,6 +31,5 @@ describe('lib/parser', function () {
         });
       });
     });
-
   });
 });

@@ -3,7 +3,7 @@
     {
       "file": "syntax/case_001.js",
       "exportsFn": "hello",
-      "docSrc": "\n @api {get} /api/${version}/hello\n @query\n   id {Object}\n   name\n\n @body:json\n\n @success:json\n   {}\n @failure:json\n   {error: ''}\n ",
+      "docSrc": "\n @api {get} /api/${version}/hello\n @query\n   id {Number}\n   name {String}\n\n @body:json\n   user\n     name {string}\n     id {Number}\n\n @success:json\n   {code: 'SUCCESS', data: '12345'}\n @failure:json\n   {code: 'UNKNOWERROR', message: 'error message'}\n ",
       "docInfo": {
         "api": {
           "token": "api",
@@ -13,21 +13,55 @@
         "body": {
           "token": "body",
           "type": "json",
-          "value": "\n "
+          "value": [
+            {
+              "desc": "",
+              "indent": 3,
+              "name": "user",
+              "sub": [
+                {
+                  "desc": "",
+                  "indent": 5,
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "desc": "",
+                  "indent": 5,
+                  "name": "id",
+                  "type": "Number"
+                }
+              ],
+              "type": "Object"
+            }
+          ]
         },
         "query": {
           "token": "query",
-          "value": "   id {Object}\n   name\n\n "
+          "value": [
+            {
+              "desc": "",
+              "indent": 3,
+              "name": "id",
+              "type": "Number"
+            },
+            {
+              "desc": "",
+              "indent": 3,
+              "name": "name",
+              "type": "String"
+            }
+          ]
         },
         "success": [{
           "token": "success",
           "type": "json",
-          "value": "   {}\n "
+          "value": "   {code: 'SUCCESS', data: '12345'}\n "
         }],
         "failure": [{
           "token": "failure",
           "type": "json",
-          "value": "   {error: ''}\n "
+          "value": "   {code: 'UNKNOWERROR', message: 'error message'}\n "
         }]
       }
     }

@@ -7,15 +7,18 @@
 /**
  * @api {get} /api/${version}/hello
  * @query
- *   id {Object}
- *   name
+ *   id {Number}
+ *   name {String}
  *
  * @body:json
+ *   user
+ *     name {string}
+ *     id {Number}
  *
  * @success:json
- *   {}
+ *   {code: 'SUCCESS', data: '12345'}
  * @failure:json
- *   {error: ''}
+ *   {code: 'UNKNOWERROR', message: 'error message'}
  */
 exports.hello = function () {
 
