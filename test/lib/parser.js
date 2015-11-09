@@ -25,11 +25,47 @@ describe('lib/parser', function () {
         it('case ' + category + '/' + file + ' should work fine', function (done) {
           var caseCode = fs.readFileSync(caseFile).toString();
           testMod.parse(caseCode, category + '/' + file, function (err, result) {
+            expect(err).to.be(null);
             expect(result).eql(require(resultJson));
             done();
           });
         });
       });
     });
+
+    it('should get error when parser syntax error', function (done) {
+      var caseCode = `
+        /**
+         * @api {post /test
+         */
+        exports.test = function () {};
+      `;
+      testMod.parse(caseCode, '/test.js', function (err, result) {
+        expect(err.length).to.be(1);
+        expect(err[0].name).to.be('SyntaxError');
+        expect(err[0].file).to.be('/test.js');
+        expect(err[0].line).to.be(3);
+        expect(err[0].column).to.be(13);
+        done();
+      });
+    });
+
+    it('should get error when parser custom error', function (done) {
+      var caseCode = `
+        /**
+         * @api {pos} /test
+         */
+        exports.test = function () {};
+      `;
+      testMod.parse(caseCode, '/test.js', function (err, result) {
+        expect(err.length).to.be(1);
+        expect(err[0].name).to.be('SyntaxError');
+        expect(err[0].file).to.be('/test.js');
+        expect(err[0].line).to.be(3);
+        expect(err[0].column).to.be(7);
+        done();
+      });
+    });
   });
+
 });

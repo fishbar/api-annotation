@@ -49,7 +49,7 @@ describe('index.js', function () {
         expect(err.length).to.be(1);
         expect(err[0].message).to.match(/http method not allowed/);
         expect(err[0].file).to.be('./mock/ctrl1.js');
-        expect(err[0].message).to.match(/Line 10: http method not allowed: unknow/);
+        expect(err[0].message).to.match(/http method not allowed: unknow/);
         require(rfile)(mockRouter);
         // expect(result.router['./fixtures/syntax/case_001.js']).to.be.an.Array;
       });
