@@ -1,0 +1,20 @@
+{
+  "syntax/case_003.js": [
+    {
+      "file": "syntax/case_003.js",
+      "exportsFn": "hello",
+      "docSrc": "\n desc xxx\n @api {get} /api/${version}/hello\n ",
+      "docInfo": {
+        "api": {
+          "token": "api",
+          "methods": ["get"],
+          "url": "/api/${version}/hello"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "desc xxx"
+        }
+      }
+    }
+  ]
+}
