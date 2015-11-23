@@ -1,0 +1,123 @@
+/*!
+ * style.css
+ */
+p {
+  color: #808080;
+}
+pre {
+  background-color: #4E4E4C;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px 0 20px 0;
+}
+
+pre.language-json {
+  overflow: auto;
+}
+
+.container {
+  min-width: 600px;
+  max-width: 760px;
+}
+
+.api-addr {
+  background: #dedede;
+  border-radius: 8px;
+  padding: 4px 0px 4px 0px;
+}
+.api-addr .method {
+  text-align: middle;
+  font-weight: bolder;
+  font-size: 12px;
+  line-height: 16px;
+  margin-right: 5px;
+  padding: 5px;
+  text-transform: uppercase;
+  background-color: #3387CC;
+  color: #ffffff;
+}
+.api-addr .method:first-child {
+  border-radius: 8px 0px 0px 8px;
+}
+
+.api-addr .method[data-type="get"] {
+  background-color: green;
+}
+
+.api-addr .method[data-type="put"] {
+  background-color: #e5c500;
+}
+
+.api-addr .method[data-type="post"] {
+  background-color: #4070ec;
+}
+
+.api-addr .method[data-type="delete"] {
+  background-color: #ed0039;
+}
+
+.api-addr .url{
+  font-size: 14px;
+  margin-left: 10px;
+  font-weight: bolder;
+}
+
+.container table {
+  border-collapse: collapse;
+}
+.container table td, .container table th {
+  border: 1px solid #dfdfdf;
+  padding: 8px;
+  min-width: 150px;
+  cellspacing: 0;
+}
+
+.api-body .indent1 {
+  margin-left: 20px;
+}
+.api-body .indent2 {
+  margin-left: 40px;
+}
+.api-body .indent3 {
+  margin-left: 60px;
+}
+.api-body .indent4 {
+  margin-left: 80px;
+}
+.api-body .indent5 {
+  margin-left: 20px;
+}
+
+
+.language-api .str {
+  color: #ffffff;
+}
+
+.language-api .pln,
+.language-api .pun {
+  color: #65B042;
+}
+
+pre code {
+  display: block;
+  font-size: 14px;
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+h1 small{
+  font-size: 0.5em;
+}
+
+
+ul.nav-tabs {
+    margin: 0;
+}
+
+.tab-content {
+    overflow: auto;
+}

@@ -3,7 +3,6 @@
     {
       "file": "syntax/case_003.js",
       "exportsFn": "hello",
-      "docSrc": "\n desc xxx\n @api {get} /api/${version}/hello\n ",
       "docInfo": {
         "api": {
           "token": "api",

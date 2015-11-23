@@ -6,9 +6,8 @@
  */
 /**
  * @api {get|post|PATCH|...} /api/${version}/user/:id
- * @json
  * @name User.getUser
- * @description
+ * @description/desc
  *
  * @param
  *   id {String} description
@@ -23,10 +22,9 @@
  *
  * @success:json
  *
- * @success description
+ * @success
+ *   description
  *
- * @failure description
- *
- * @failure description
+ * @failure/error
  *
  */

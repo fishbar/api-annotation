@@ -1,0 +1,115 @@
+{
+  "syntax/case_004.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/end_with_flag"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "end_with_flag"
+        },
+        "private": {
+          "token": "private",
+          "value": true
+        }
+      },
+      "exportsFn": "hello",
+      "file": "syntax/case_004.js"
+    },
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/end_with_success"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "end_with_success"
+        },
+        "success": [
+          {
+            "token": "success",
+            "type": "json",
+            "value": ""
+          }
+        ]
+      },
+      "exportsFn": "hello",
+      "file": "syntax/case_004.js"
+    },
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/end_with_json"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "end_with_json"
+        },
+        "json": {
+          "token": "json",
+          "value": true
+        }
+      },
+      "exportsFn": "hello",
+      "file": "syntax/case_004.js"
+    },
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/end_with_error"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "end_with_error"
+        },
+        "failure": [
+          {
+            "token": "failure",
+            "type": "json",
+            "value": ""
+          }
+        ]
+      },
+      "exportsFn": "hello",
+      "file": "syntax/case_004.js"
+    },
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/end_with_name"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "end_with_name"
+        },
+        "name": {
+          "token": "name",
+          "value": "Test.abc"
+        }
+      },
+      "exportsFn": "hello",
+      "file": "syntax/case_004.js"
+    }
+  ]
+}

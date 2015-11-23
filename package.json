@@ -2,7 +2,7 @@
   "author": "fish <zhengxinlin@gmail.com> (https://github.com/fishbar)",
   "name": "api-annotation",
   "description": "like java annotation, using comments annotation,  generate both router binding script and apidoc",
-  "version": "0.1.2",
+  "version": "0.2.4",
   "homepage": "https://github.com/fishbar/api-annotation",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --recursive -r jscoverage test",
+    "test": "./node_modules/.bin/mocha --recursive test",
     "pretest": "./node_modules/.bin/pegjs ./lib/comment_parser.pegjs ./lib/comment_parser.js"
   },
   "engines": {
@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "debug": "~2.2.0",
-    "esprima": "~2.6.0"
+    "esprima": "~2.6.0",
+    "xfs": "~0.2.0"
   },
   "devDependencies": {
     "pegjs": "~0.9.0",

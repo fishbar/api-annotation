@@ -7,13 +7,15 @@
 var fs = require('fs');
 var path = require('path');
 var parser = require('./lib/parser');
+var router = require('./lib/router');
+var doc = require('./lib/doc');
 /**
  * 编译整个目录的文件
  * @param  {String}   fdir    fdir
  * @param  {Object}   options  {routerFile, docFile}
  * @param  {Function} callback
  */
-function processDir(fdir, options, callback, ifsub) {
+function processDir(fdir, callback, ifsub) {
   var files = fs.readdirSync(fdir);
   var errors = [];
   var result = {};
@@ -21,7 +23,7 @@ function processDir(fdir, options, callback, ifsub) {
     var tmp = path.join(fdir, file);
     var stat = fs.statSync(tmp);
     if (stat.isDirectory()) {
-      processDir(tmp, options, function (errs, res) {
+      processDir(tmp, function (errs, res) {
         if (errs && errs.length) {
           errors = errors.concat(errs);
         }
@@ -33,7 +35,7 @@ function processDir(fdir, options, callback, ifsub) {
       if (!/\.js$/.test(tmp)) {
         return;
       }
-      processFile(tmp, options, function (err, res) {
+      processFile(tmp, function (err, res) {
         if (err) {
           errors = errors.concat(err);
         }
@@ -46,98 +48,83 @@ function processDir(fdir, options, callback, ifsub) {
   if (ifsub) {
     return callback(errors.length ? errors : null, result);
   }
-  var routerFile = genRouterFile(result, options.routerFile);
   // genDocFile();
-  callback(errors.length ? errors : null, {
-    router: routerFile,
-    doc: ''
-  });
+  callback(errors.length ? errors : null, result);
 };
 
 /**
  * 编译单个文件
  */
-function processFile(file, options, callback) {
+function processFile(file, callback) {
   var code = fs.readFileSync(file).toString();
-  var routerFile = options.routerFile;
   var relPath = file;
-  if (routerFile) {
-    relPath = resolvePath(routerFile, file);
-  }
   parser.parse(code, relPath, callback);
 };
 
-/*
-abc.test
-def.require
-
-c/a/def
-c/d/require
+/**
+ * 传入控制器路径，解析出API的信息
+ * @param  {String}   fpath   文件路径
+ * @param  {Function} callback(err, result)
  */
-function resolvePath(targetFile, requireFile) {
-  targetFile = targetFile.split(/\/|\\/g);
-  requireFile = requireFile.split(/\/|\\/g);
-
-  var len = Math.min(targetFile.length, requireFile.length)
-  var i;
-  for (i = 0; i < len; i++) {
-    if (targetFile[i] !== requireFile[i]) {
-      break;
-    }
+function process(fpath, callback) {
+  var stat;
+  try {
+    stat = fs.statSync(fpath);
+  } catch (e) {
+    throw new Error('api-annotation try to read path error:' + fpath);
   }
-  targetFile.splice(0, i)
-  targetFile.pop();
-  requireFile.splice(0, i);
-
-  var relPath = [];
-  if (targetFile.length) {
-    for (i = 0; i <= targetFile.length; i++) {
-      relPath.push('../');
-    }
+  if (stat.isDirectory()) {
+    processDir(fpath, callback);
   } else {
-    relPath = ['./'];
+    processFile(fpath, callback);
   }
-  relPath.push(requireFile.join('/'));
-  return relPath.join('');
 }
 
-function genRouterFile(result, savePath) {
-  var requires = [];
-  var routers = [];
-  var files = Object.keys(result);
-  files.forEach(function (file) {
-    requires.push('"' + file + '": require("' + file + '")');
-    var tmp = result[file];
-    tmp.forEach(function (api) {
-      var exportsFn = api.exportsFn;
-      var apiPath = api.docInfo.api.url;
-      var methods = api.docInfo.api.methods;
-      if (!apiPath) {
-        return;
+exports.process = process;
+
+/**
+ * generate Router file
+ * @param  {String|Object}   ctrlPath or process result
+ * @param  {Object}   options
+ *                       routerFile
+ *                       version
+ * @param  {Function} callback(err, routerContent)
+ */
+exports.genRouter = function (ctrlPath, options, callback) {
+  var rContent;
+  if (typeof ctrlPath === 'object') {
+    rContent = router.genRouter(ctrlPath, options, callback);
+    callback(null, rContent);
+  } else {
+    process(ctrlPath, function (err, result) {
+      if (err) {
+        return callback(err);
       }
-      methods.forEach(function (method) {
-        routers.push(
-          'router.' + method + '("' + apiPath + '", ' +
-          'ctrls["' + file + '"].' + exportsFn + ');'
-        );
-      });
+      rContent = router.genRouter(result, options, callback);
+      callback(null, rContent);
     });
-  });
-  var routerFileCnt = ['// do not modify this file, genaratered by api-annotation'];
-  routerFileCnt.push('var ctrls = {');
-  routerFileCnt.push(requires.join(',\n'));
-  routerFileCnt.push('};');
-  routerFileCnt.push('module.exports = function (router) {\n');
-  routerFileCnt.push(routers.join('\n'));
-  routerFileCnt.push('\n};\n');
-  var routerFile = routerFileCnt.join('\n');
-
-  if (savePath) {
-    fs.writeFileSync(savePath, routerFile);
   }
-  return routerFile;
-}
+};
 
-exports.resolvePath = resolvePath;
-exports.processDir = processDir;
-exports.processFile = processFile;
+/**
+ * generate Document
+ * @param  {String|Object}   ctrlPath  ctrlPath or process result
+ * @param  {Object}   options
+ *                       docPath    output doc path
+ *                       base       ctrlpath
+ *                       version    api version
+ * @param  {Function} callback(err, docObject)
+ */
+exports.genDocument = function (ctrlPath, options, callback) {
+  if (typeof ctrlPath === 'object') {
+    if (!options.base) {
+      throw new Error('genDocument should set options.base options');
+    }
+    doc.genDocument(ctrlPath, options, callback);
+  } else {
+    process(ctrlPath, function (err, result) {
+      options.base = ctrlPath;
+      doc.genDocument(result, options, callback);
+    });
+  }
+};

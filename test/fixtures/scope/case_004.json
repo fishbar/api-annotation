@@ -1,0 +1,30 @@
+{
+  "scope/case_004.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/test0"
+        }
+      },
+      "exportsFn": "test",
+      "file": "scope/case_004.js"
+    },
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/test1"
+        }
+      },
+      "exportsFn": "test",
+      "file": "scope/case_004.js"
+    }
+  ]
+}

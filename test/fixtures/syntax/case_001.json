@@ -3,12 +3,19 @@
     {
       "file": "syntax/case_001.js",
       "exportsFn": "hello",
-      "docSrc": "\n @api {get} /api/${version}/hello\n @query\n   id {Number}\n   name {String}\n\n @body:json\n   user\n     name {string}\n     id {Number}\n\n @success:json\n   {code: 'SUCCESS', data: '12345'}\n @failure:json\n   {code: 'UNKNOWERROR', message: 'error message'}\n ",
       "docInfo": {
         "api": {
           "token": "api",
           "methods": ["get"],
           "url": "/api/${version}/hello"
+        },
+        "name": {
+          "token": "name",
+          "value": "Test.apiName"
+        },
+        "private": {
+          "token": "private",
+          "value": true
         },
         "body": {
           "token": "body",
@@ -20,13 +27,13 @@
               "name": "user",
               "sub": [
                 {
-                  "desc": "",
+                  "desc": "user name",
                   "indent": 5,
                   "name": "name",
                   "type": "string"
                 },
                 {
-                  "desc": "",
+                  "desc": "user id",
                   "indent": 5,
                   "name": "id",
                   "type": "Number"
@@ -56,12 +63,32 @@
         "success": [{
           "token": "success",
           "type": "json",
-          "value": "   {code: 'SUCCESS', data: '12345'}\n "
+          "value": {
+            "code": "SUCCESS",
+            "data": "1"
+          }
+        },{
+          "token": "success",
+          "type": "json",
+          "value": {
+            "code": "SUCCESS",
+            "data": "2"
+          }
         }],
         "failure": [{
           "token": "failure",
           "type": "json",
-          "value": "   {code: 'UNKNOWERROR', message: 'error message'}\n "
+          "value": {
+            "code": "UNKNOWERROR",
+            "message": "error message0"
+          }
+        },{
+          "token": "failure",
+          "type": "json",
+          "value": {
+            "code": "UNKNOWERROR",
+            "message": "error message1"
+          }
         }]
       }
     }

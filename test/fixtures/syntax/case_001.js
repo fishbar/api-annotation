@@ -6,19 +6,24 @@
  */
 /**
  * @api {get} /api/${version}/hello
+ * @name Test.apiName
+ * @private
  * @query
  *   id {Number}
  *   name {String}
- *
  * @body:json
  *   user
- *     name {string}
- *     id {Number}
- *
+ *     name {string} user name
+ *     id {Number} user id
  * @success:json
- *   {code: 'SUCCESS', data: '12345'}
- * @failure:json
- *   {code: 'UNKNOWERROR', message: 'error message'}
+ *   {code: 'SUCCESS', data: '1'}
+ * @success
+ *   {code: 'SUCCESS', data: '2'}
+ *
+ * @error:json
+ *   {code: 'UNKNOWERROR', message: 'error message0'}
+ * @failure
+ *   {code: 'UNKNOWERROR', message: 'error message1'}
  */
 exports.hello = function () {
 
