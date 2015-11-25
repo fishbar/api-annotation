@@ -9,6 +9,7 @@ var path = require('path');
 var parser = require('./lib/parser');
 var router = require('./lib/router');
 var doc = require('./lib/doc');
+var api = require('./lib/api');
 /**
  * 编译整个目录的文件
  * @param  {String}   fdir    fdir
@@ -128,3 +129,24 @@ exports.genDocument = function (ctrlPath, options, callback) {
     });
   }
 };
+/**
+ * generate ApiList json
+ * @param  {String|Object}   ctrlPath
+ * @param  {Object}   options
+ *                     - apiListPath {String}
+ * @param  {Function} callback(err, apiList)
+ */
+exports.genApiList = function (ctrlPath, options, callback) {
+  if (typeof ctrlPath === 'object') {
+    if (!options.apiListPath) {
+      throw new Error('genDocument should set options.base options');
+    }
+    var result = api.genApiList(ctrlPath, options);
+    callback(null, result);
+  } else {
+    process(ctrlPath, function (err, result) {
+      var result = api.genApiList(result, options);
+      callback(null, result);
+    });
+  }
+}

@@ -86,4 +86,23 @@ describe('index.js', function () {
       });
     });
   });
+
+  describe('index.genApiList()', function () {
+    var apiPath = path.join(__dirname, './api.json');
+    afterEach(function (done) {
+      fs.rm(apiPath, done);
+    });
+    it('should work fine', function () {
+      var options = {
+        apiListPath: apiPath
+      };
+      testMod.genApiList(path.join(__dirname, 'fixtures/syntax'), options, function (err, apis) {
+        expect(err).to.be(null);
+        expect(apis.length).to.above(0);
+        expect(apis[0]).have.keys([
+          'url', 'method', 'name'
+        ]);
+      });
+    });
+  });
 });
