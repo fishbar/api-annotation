@@ -30,7 +30,7 @@
                   "desc": "user name",
                   "indent": 5,
                   "name": "name",
-                  "type": "string"
+                  "type": "String"
                 },
                 {
                   "desc": "user id",
@@ -40,6 +40,26 @@
                 }
               ],
               "type": "Object"
+            },
+            {
+              "desc": "",
+              "indent": 3,
+              "name": "shop",
+              "sub": [
+                {
+                "desc": "shop id",
+                "indent": 5,
+                "name": "id",
+                "type": "Number"
+                }
+              ],
+              "type": "Object"
+            },
+            {
+              "desc": "true",
+              "indent": 3,
+              "name": "visible",
+              "type": "Boolean"
             }
           ]
         },

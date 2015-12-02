@@ -96,6 +96,7 @@
                   <%
                         if (bodyParam.type === 'Object') {
                           loop(bodyParam.sub, ++ level);
+                          level --;
                         }
                       });
                     }

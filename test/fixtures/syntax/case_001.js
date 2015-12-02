@@ -13,8 +13,12 @@
  *   name {String}
  * @body:json
  *   user
- *     name {string} user name
+ *     name {String} user name
  *     id {Number} user id
+ *   shop
+ *     id {Number} shop id
+ *   visible {Boolean} true
+ *
  * @success:json
  *   {code: 'SUCCESS', data: '1'}
  * @success
