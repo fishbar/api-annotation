@@ -72,6 +72,7 @@ describe('index.js', function () {
     var docPath = path.join(__dirname, '../docs_test');
     afterEach(function (done) {
       fs.rm(docPath, done);
+      // done();
     });
     it('should work fine', function () {
       var options = {

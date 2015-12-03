@@ -1,11 +1,39 @@
 /*!
  * style.css
  */
+html {
+  font-family: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif
+}
+a {
+  text-decoration: none;
+}
+
+a, a:link {
+  color: #23A1FF;
+}
+a:hover {
+  color: #3DB1FF;
+}
+a:visited {
+  color: #069DC7;
+}
+
+h2 {
+  margin: 8px 0px;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
 p {
   color: #808080;
+  margin: 6px 0px;
 }
 pre {
-  background-color: #4E4E4C;
+  background-color: #4B6F7F;
   color: #ffffff;
   padding: 10px;
   border-radius: 6px;
@@ -15,27 +43,52 @@ pre {
 pre.language-json {
   overflow: auto;
 }
+.sidebar {
+  position: fixed;
+  width: 200px;
+  padding: 10px;
+}
+.sidebar ul {
+  margin-left: 10px;
+  font-weight: bolder;
+}
+.sidebar ul.sub {
+  font-weight: normal;
+}
+.sidebar li {
+  margin: 5px 0px;
+  line-height: 150%;
+}
 
 .container {
   min-width: 600px;
   max-width: 760px;
+  margin-left: 220px;
+}
+.container .row {
+  margin-top: 40px;
 }
 
 .api-addr {
-  background: #dedede;
-  border-radius: 8px;
-  padding: 4px 0px 4px 0px;
+  font-size: 12px;
+  height: 24px;
+  margin: 3px 0px;
+}
+.api-addr span {
+  display: inline-block;
 }
 .api-addr .method {
   text-align: middle;
-  font-weight: bolder;
-  font-size: 12px;
-  line-height: 16px;
-  margin-right: 5px;
   padding: 5px;
   text-transform: uppercase;
   background-color: #3387CC;
   color: #ffffff;
+}
+.api-addr .url {
+  border-radius: 0px 8px 8px 0px;
+  background: #e5e5e5;
+  padding: 5px 10px 5px 10px;
+  font-weight: bolder;
 }
 .api-addr .method:first-child {
   border-radius: 8px 0px 0px 8px;
@@ -57,20 +110,23 @@ pre.language-json {
   background-color: #ed0039;
 }
 
-.api-addr .url{
-  font-size: 14px;
-  margin-left: 10px;
-  font-weight: bolder;
-}
-
 .container table {
   border-collapse: collapse;
 }
 .container table td, .container table th {
   border: 1px solid #dfdfdf;
+  border-left: 0px;
+  border-right: 0px;
   padding: 8px;
   min-width: 150px;
   cellspacing: 0;
+}
+.container table tr td:first-child {
+  font-weight: bold;
+  color: #2DAAB7
+}
+.container table th {
+  text-align: left;
 }
 
 .api-body .indent1 {
@@ -89,16 +145,6 @@ pre.language-json {
   margin-left: 20px;
 }
 
-
-.language-api .str {
-  color: #ffffff;
-}
-
-.language-api .pln,
-.language-api .pun {
-  color: #65B042;
-}
-
 pre code {
   display: block;
   font-size: 14px;
@@ -107,17 +153,4 @@ pre code {
   font-weight: 400;
   word-wrap: normal;
   white-space: pre;
-}
-
-h1 small{
-  font-size: 0.5em;
-}
-
-
-ul.nav-tabs {
-    margin: 0;
-}
-
-.tab-content {
-    overflow: auto;
 }

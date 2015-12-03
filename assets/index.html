@@ -1,3 +1,4 @@
+<!doctype html>
 <html ng-app="apidoc">
   <head>
     <title>ApiDoc</title>
@@ -7,139 +8,140 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div style="display: none" id="sidenav" class="span2">
-      <nav id="scrollingNav">
-        <ul class="sidenav nav nav-list">
-            <li class="hide" data-group="User" data-name="PostUser" data-version="0.2.0">
-              <a href="#api-User-PostUser">Create a User</a>
-            </li>
-            <li data-group="User" data-name="PutUser" data-version="0.3.0" class="is-new active">
-              <a href="#api-User-PutUser">Change a new User</a>
-            </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="container">
-
-    </div>
-    <script id="tpl-api" type="text/x-handlebars-template">
+    <nav class="sidebar"></nav>
+    <div class="container"></div>
+    <script id="tpl-menu" type="text/x-template">
+      <ul>
       <%
-        var api;
+      menus.forEach(function (menu, i) {
+        if (menu.sub && menu.sub.length > 1) {
+      %>
+        <li>
+          <a href="#<%= menu.href%>"><%= menu.name %></a>
+          <ul class="sub">
+          <% menu.sub.forEach(function (sub) {%>
+            <li><a href="#<%= sub.name%>"><%= sub.name %></a></li>
+          <% }) %>
+          </ul>
+        </li>
+      <% } else { %>
+        <li><a href="#<%= menu.href%>"><%= menu.href %></a></li>
+      <% }}); %>
+      </ul>
+    </script>
+    <script id="tpl-api" type="text/x-template">
+      <%
         apis.forEach(function (api) {
       %>
         <div class="row">
-          <div class="col-xm-12">
-              <div>
-                <h2><%= api.name.value %></h2>
-                <small><%= api.desc ? api.desc.value : '' %></small>
-              </div>
-              <div class="api-addr">
-                <% api.api.methods.forEach(function (method) { %>
-                  <span data-type="<%= method %>" class="method">
-                    <%= method %>
-                  </span>
-                <% }); %>
-                <span class="url"><%= api.api.url %></span>
-              </div>
-              <% if (api.param) { %>
-              <div class="api-param">
-                <pre >
-                  <%= JSON.stringify(api.param.value) %>
-                </pre>
-              </div>
-              <% } %>
-              <% if (api.query && api.query.value) {%>
-              <div class="api-query">
-                <p>query参数: </p>
-                <table cellspacing="0">
-                  <thead>
-                    <th>参数名</th>
-                    <th>类型</th>
-                    <th>描述</th>
-                  </thead>
-                <% api.query.value.forEach(function (queryParam) { %>
-                  <tr>
-                    <td><%= queryParam.name %></td>
-                    <td><%= queryParam.type %></td>
-                    <td><%= queryParam.desc %></td>
-                  </tr>
-                <% });%>
-                </table>
-              </div>
-              <% }%>
+            <div>
+              <h2 id="<%= api.name.value %>"><%= api.name.value %></h2>
+              <p><%= api.desc ? api.desc.value : '' %></p>
+            </div>
+            <div class="api-addr">
+              <% api.api.methods.forEach(function (method) { %>
+                <span data-type="<%= method %>" class="method">
+                  <%= method %>
+                </span><% }); %><span class="url"><%= api.api.url %></span>
+            </div>
+            <% if (api.param) { %>
+            <div class="api-param">
+              <pre >
+                <%= JSON.stringify(api.param.value) %>
+              </pre>
+            </div>
+            <% } %>
+            <% if (api.query && api.query.value) {%>
+            <div class="api-query">
+              <p>query参数: </p>
+              <table cellspacing="0">
+                <thead>
+                  <th>参数名</th>
+                  <th>类型</th>
+                  <th>描述</th>
+                </thead>
+              <% api.query.value.forEach(function (queryParam) { %>
+                <tr>
+                  <td><%= queryParam.name %></td>
+                  <td><%= queryParam.type %></td>
+                  <td><%= queryParam.desc %></td>
+                </tr>
+              <% });%>
+              </table>
+            </div>
+            <% }%>
 
-              <% if (api.body && api.body.value) { %>
-              <div class="api-body">
-                <p>body参数: </p>
-                <table cellspacing="0">
-                  <thead>
-                    <th>参数名</th>
-                    <th>类型</th>
-                    <th>描述</th>
-                  </thead>
-                  <%
-                    function loop(obj, level) {
-                      if (level === undefined) {
-                        level = 0;
-                      }
-                      obj && obj.forEach(function (bodyParam) {
-                  %>
-                      <tr>
-                        <td>
-                          <span class="indent<%=level%>">
-                            <%= bodyParam.name %>
-                          </span>
-                        </td>
-                        <td><%= bodyParam.type %></td>
-                        <td><%= bodyParam.desc %></td>
-                      </tr>
-                  <%
-                        if (bodyParam.type === 'Object') {
-                          loop(bodyParam.sub, ++ level);
-                          level --;
-                        }
-                      });
+            <% if (api.body && api.body.value) { %>
+            <div class="api-body">
+              <p>body参数: </p>
+              <table cellspacing="0">
+                <thead>
+                  <th>参数名</th>
+                  <th>类型</th>
+                  <th>描述</th>
+                </thead>
+                <%
+                  function loop(obj, level) {
+                    if (level === undefined) {
+                      level = 0;
                     }
-                    loop(api.body.value);
-                  %>
-                </table>
-              </div>
-              <% } %>
+                    obj && obj.forEach(function (bodyParam) {
+                %>
+                    <tr>
+                      <td>
+                        <span class="indent<%=level%>">
+                          <%= bodyParam.name %>
+                        </span>
+                      </td>
+                      <td><%= bodyParam.type %></td>
+                      <td><%= bodyParam.desc %></td>
+                    </tr>
+                <%
+                      if (bodyParam.type === 'Object') {
+                        loop(bodyParam.sub, ++ level);
+                        level --;
+                      }
+                    });
+                  }
+                  loop(api.body.value);
+                %>
+              </table>
+            </div>
+            <% } %>
 
-              <%
-                if (api.success && api.success.length) {
-              %>
-                  <div class="api-success">
-                    <p>接口成功返回格式: </p>
-              <%
-                  api.success.forEach(function (success) {
-              %>
-                   <pre><%= JSON.stringify(success.value, null, 2) %></pre>
-              <%
-                  });
-              %>
-                  </div>
-              <%
-                }
-              %>
+            <%
+              if (api.success && api.success.length) {
+            %>
+                <div class="api-success">
+                  <p>接口成功返回格式: </p>
+            <%
+                api.success.forEach(function (success) {
+            %>
+                 <pre><%= JSON.stringify(success.value, null, 2) %></pre>
+            <%
+                });
+            %>
+                </div>
+            <%
+              }
+            %>
 
-              <%
-                if (api.failure && api.failure.length) {
-              %>
-                <div class="api-error">
-                  <p>接口失败返回格式: </p>
-              <%
-                  api.failure.forEach(function (error) {
-              %>
-                    <pre><%= JSON.stringify(error.value, null, 2) %></pre>
-              <%
-                  });
-              %>
-                  </div>
-              <%
-                }
-              %>
-          </div>
+            <%
+              if (api.failure && api.failure.length) {
+            %>
+              <div class="api-error">
+                <p>接口失败返回格式: </p>
+            <%
+                api.failure.forEach(function (error) {
+            %>
+                  <pre><%= JSON.stringify(error.value, null, 2) %></pre>
+            <%
+                });
+            %>
+                </div>
+            <%
+              }
+            %>
         </div>
       <% }); %>
     </script>
