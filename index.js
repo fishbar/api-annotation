@@ -114,6 +114,7 @@ exports.genRouter = function (ctrlPath, options, callback) {
  *                       docPath    output doc path
  *                       base       ctrlpath
  *                       version    api version
+ *                       hook       api hooks, adjust doc content
  * @param  {Function} callback(err, docObject)
  */
 exports.genDocument = function (ctrlPath, options, callback) {
@@ -133,7 +134,8 @@ exports.genDocument = function (ctrlPath, options, callback) {
  * generate ApiList json
  * @param  {String|Object}   ctrlPath
  * @param  {Object}   options
- *                     - apiListPath {String}
+ *                       apiListPath {String}
+ *                       version {String}
  * @param  {Function} callback(err, apiList)
  */
 exports.genApiList = function (ctrlPath, options, callback) {

@@ -70,9 +70,8 @@ describe('index.js', function () {
 
   describe('index.genDocument()', function () {
     var docPath = path.join(__dirname, '../docs_test');
-    afterEach(function (done) {
+    after(function (done) {
       fs.rm(docPath, done);
-      // done();
     });
     it('should work fine', function () {
       var options = {
@@ -86,12 +85,30 @@ describe('index.js', function () {
         ]);
       });
     });
+
+    it('should work fine', function () {
+      var options = {
+        docPath: docPath,
+        hook: function (doc) {
+          doc.api.url = '/hook';
+        }
+      };
+      testMod.genDocument(path.join(__dirname, 'fixtures/syntax'), options, function (err, doc) {
+        expect(err).to.be(null);
+        expect(doc.length).to.above(0);
+        expect(doc[0]).have.keys([
+          'api'
+        ]);
+        expect(doc[0].api.url).to.be('/hook');
+      });
+    });
   });
 
   describe('index.genApiList()', function () {
-    var apiPath = path.join(__dirname, './api.json');
+    var apiPath = path.join(__dirname, 'tmp');
     afterEach(function (done) {
       fs.rm(apiPath, done);
+      // done();
     });
     it('should work fine', function () {
       var options = {

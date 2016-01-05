@@ -39,10 +39,7 @@
               <p><%= api.desc ? api.desc.value : '' %></p>
             </div>
             <div class="api-addr">
-              <% api.api.methods.forEach(function (method) { %>
-                <span data-type="<%= method %>" class="method">
-                  <%= method %>
-                </span><% }); %><span class="url"><%= api.api.url %></span>
+              <% api.api.methods.forEach(function (method) { %><span data-type="<%= method %>" class="method"><%= method %></span><% }); %><span class="url"><%= api.api.url %></span>
             </div>
             <% if (api.param) { %>
             <div class="api-param">
