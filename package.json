@@ -2,7 +2,7 @@
   "author": "fish <zhengxinlin@gmail.com> (https://github.com/fishbar)",
   "name": "api-annotation",
   "description": "like java annotation, using comments annotation,  generate both router binding script and apidoc",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "homepage": "https://github.com/fishbar/api-annotation",
   "repository": {
     "type": "git",

@@ -15,9 +15,24 @@ function main() {
         return 1;
       }
     });
+    var versionOptions = [];
+    versions.forEach(function (v) {
+      versionOptions.push('<option value="' + v + '">v' + v + '</option>');
+    });
+    versionOptions.push('<option value="0.1.1">v0.1.1</option>');
+    $('#versions').html(versionOptions.join('')).on('change', function () {
+      var version = $(this).val();
+      $.get('./api_doc_' + version + '.json').then(function (res) {
+        render(res);
+      }, function () {
+        alert('doc not found: v' + version);
+      });
+    });
     var version = versions[0];
-    $.get('./api_' + version + '.json', function (res) {
+    $.get('./api_doc_' + version + '.json').then(function (res) {
       render(res);
+    }, function () {
+      alert('doc not found');
     });
   });
 }
@@ -48,9 +63,7 @@ function render(res) {
     });
   });
 
-  console.log(menus);
-
-  $('.sidebar').html(ejs.render($('#tpl-menu').html(), {menus: menus}));
+  $('.sidebar .list').html(ejs.render($('#tpl-menu').html(), {menus: menus}));
 
   $('.container').html(ejs.render($('#tpl-api').html(), {apis: res}));
 }

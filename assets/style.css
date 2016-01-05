@@ -46,7 +46,7 @@ pre.language-json {
 .sidebar {
   position: fixed;
   width: 200px;
-  padding: 10px;
+  padding: 0px 10px 10px 10px;
 }
 .sidebar ul {
   margin-left: 10px;
