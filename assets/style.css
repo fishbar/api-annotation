@@ -2,7 +2,7 @@
  * style.css
  */
 html {
-  font-family: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif
+  font-family: 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif
 }
 a {
   text-decoration: none;
@@ -22,6 +22,9 @@ h2 {
   margin: 8px 0px;
 }
 
+body {
+  margin: 0px;
+}
 ul, li {
   list-style: none;
   padding: 0px;
@@ -44,13 +47,20 @@ pre.language-json {
   overflow: auto;
 }
 .sidebar {
+  top: 0px;
   position: fixed;
   width: 200px;
   padding: 0px 10px 10px 10px;
+  background: #f1f1f1;
+  overflow: scroll;
 }
 .sidebar ul {
   margin-left: 10px;
   font-weight: bolder;
+}
+.sidebar .list {
+  width: 180px;
+  overflow-x: scroll;
 }
 .sidebar ul.sub {
   font-weight: normal;
@@ -64,11 +74,14 @@ pre.language-json {
   min-width: 600px;
   max-width: 760px;
   margin-left: 220px;
+  padding: 10px 20px;
 }
 .container .row {
   margin-top: 40px;
 }
-
+.container .row:first-child {
+  margin-top: 0px;
+}
 .api-addr {
   font-size: 12px;
   height: 24px;

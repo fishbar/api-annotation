@@ -3,7 +3,14 @@
  */
 $(function () {
   main();
+  resize();
+  $(window).on('resize', resize);
 });
+
+function resize() {
+  var h = $(window).height();
+  $('.sidebar').height(h > 0 ? h : 0);
+}
 
 function main() {
   $.get('./version.json', function (res, status) {
