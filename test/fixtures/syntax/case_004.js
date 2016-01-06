@@ -6,22 +6,22 @@
  */
 /**
  * end_with_flag
- * @api /end_with_flag
+ * @api {PUT} /end_with_flag
  * @private
  */
 /**
  * end_with_success
- * @api /end_with_success
+ * @api {PATCH} /end_with_success
  * @success
  */
 /**
  * end_with_json
- * @api /end_with_json
+ * @api {DELETE} /end_with_json
  * @json
  */
 /**
  * end_with_error
- * @api /end_with_error
+ * @api {POST} /end_with_error
  * @error
  */
 /**

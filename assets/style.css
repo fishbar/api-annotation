@@ -2,7 +2,12 @@
  * style.css
  */
 html {
-  font-family: 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif
+  font-family:
+    'PingFang SC', 'Helvetica Neue', 'Helvetica',
+    "微软雅黑", "STHeiti", "WenQuanYi Micro Hei",
+    SimSun,
+    sans-serif;
+  font-size: 12px;
 }
 a {
   text-decoration: none;
@@ -60,7 +65,8 @@ pre.language-json {
 }
 .sidebar .list {
   width: 180px;
-  overflow-x: scroll;
+  overflow-x: hidden;
+  height:1;
 }
 .sidebar ul.sub {
   font-weight: normal;
@@ -83,25 +89,28 @@ pre.language-json {
   margin-top: 0px;
 }
 .api-addr {
-  font-size: 12px;
-  height: 24px;
+  height: 25px;
   margin: 3px 0px;
 }
 .api-addr span {
   display: inline-block;
+  vertical-align: middle;
+  line-height: 200%;
 }
 .api-addr .method {
-  text-align: middle;
-  padding: 5px;
+  text-align: center;
+  padding: 0px 10px;
   text-transform: uppercase;
   background-color: #3387CC;
   color: #ffffff;
+  width: 45px;
 }
 .api-addr .url {
   border-radius: 0px 8px 8px 0px;
   background: #e5e5e5;
-  padding: 5px 10px 5px 10px;
+  padding: 0px 10px;
   font-weight: bolder;
+  min-width: 200px;
 }
 .api-addr .method:first-child {
   border-radius: 8px 0px 0px 8px;
@@ -160,7 +169,6 @@ pre.language-json {
 
 pre code {
   display: block;
-  font-size: 14px;
   font-family: "Source Code Pro";
   font-style: normal;
   font-weight: 400;

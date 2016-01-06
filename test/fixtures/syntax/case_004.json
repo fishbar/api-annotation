@@ -4,7 +4,7 @@
       "docInfo": {
         "api": {
           "methods": [
-            "get"
+            "put"
           ],
           "token": "api",
           "url": "/end_with_flag"
@@ -25,7 +25,7 @@
       "docInfo": {
         "api": {
           "methods": [
-            "get"
+            "patch"
           ],
           "token": "api",
           "url": "/end_with_success"
@@ -49,7 +49,7 @@
       "docInfo": {
         "api": {
           "methods": [
-            "get"
+            "delete"
           ],
           "token": "api",
           "url": "/end_with_json"
@@ -70,7 +70,7 @@
       "docInfo": {
         "api": {
           "methods": [
-            "get"
+            "post"
           ],
           "token": "api",
           "url": "/end_with_error"

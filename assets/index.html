@@ -16,6 +16,10 @@
     <script id="tpl-menu" type="text/x-template">
       <ul>
       <%
+      function fixName(name) {
+        var index = name.indexOf('.');
+        return name.substr(index + 1);
+      }
       menus.forEach(function (menu, i) {
         if (menu.sub && menu.sub.length > 1) {
       %>
@@ -23,7 +27,7 @@
           <a href="#<%= menu.href%>"><%= menu.name %></a>
           <ul class="sub">
           <% menu.sub.forEach(function (sub) {%>
-            <li><a href="#<%= sub.name%>"><%= sub.name %></a></li>
+            <li><a href="#<%= sub.name%>" title="<%= sub.name %>"><%= fixName(sub.name) %></a></li>
           <% }) %>
           </ul>
         </li>
