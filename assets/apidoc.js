@@ -26,7 +26,6 @@ function main() {
     versions.forEach(function (v) {
       versionOptions.push('<option value="' + v + '">v' + v + '</option>');
     });
-    versionOptions.push('<option value="0.1.1">v0.1.1</option>');
     $('#versions').html(versionOptions.join('')).on('change', function () {
       var version = $(this).val();
       $.get('./api_doc_' + version + '.json').then(function (res) {
