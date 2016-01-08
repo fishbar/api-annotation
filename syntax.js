@@ -27,4 +27,6 @@
  *
  * @failure/error
  *
+ * @example
+ *
  */

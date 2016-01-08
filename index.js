@@ -6,6 +6,7 @@
  */
 var fs = require('fs');
 var path = require('path');
+// var deepCamel = require('deep-camel');
 var parser = require('./lib/parser');
 var router = require('./lib/router');
 var doc = require('./lib/doc');
@@ -89,6 +90,8 @@ exports.process = process;
  * @param  {Object}   options
  *                       routerFile
  *                       version
+ *                       forceSnake
+ *                       forceCamel
  * @param  {Function} callback(err, routerContent)
  */
 exports.genRouter = function (ctrlPath, options, callback) {

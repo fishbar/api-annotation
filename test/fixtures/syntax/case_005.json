@@ -1,0 +1,35 @@
+{
+  "syntax/case_005.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get",
+            "post",
+            "put",
+            "patch",
+            "delete"
+          ],
+          "token": "api",
+          "url": "/test"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "end_with_flag"
+        },
+        "example": [
+          {
+            "token": "example",
+            "value": "<pre><code> curl ${server}/test\n</code></pre><p>success:</p>\n<pre><code>{\n    &quot;code&quot;: &quot;SUCCESS&quot;,\n    &quot;data&quot;: &quot;hello&quot;\n}\n</code></pre>"
+          }
+        ],
+        "private": {
+          "token": "private",
+          "value": true
+        }
+      },
+      "exportsFn": "hello",
+      "file": "syntax/case_005.js"
+    }
+  ]
+}

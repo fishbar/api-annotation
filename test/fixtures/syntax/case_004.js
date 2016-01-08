@@ -6,7 +6,7 @@
  */
 /**
  * end_with_flag
- * @api {PUT} /end_with_flag
+ * @api {GET|POST|PUT|PATCH|DELETE} /end_with_flag
  * @private
  */
 /**

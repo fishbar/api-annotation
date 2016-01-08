@@ -135,7 +135,6 @@ make syntaxCase case=00x
 @query
 @body
 @success
-@success
 @failure
 @error
 @private

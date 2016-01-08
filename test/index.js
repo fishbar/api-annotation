@@ -87,7 +87,7 @@ describe('index.js', function () {
       });
     });
 
-    it('should work fine', function () {
+    it('should work fine 2', function () {
       var options = {
         docPath: docPath,
         hook: function (doc) {

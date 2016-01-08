@@ -56,8 +56,8 @@
             </div>
             <% } %>
             <% if (api.query && api.query.value) {%>
-            <div class="api-query">
-              <p>query参数: </p>
+            <div class="api api-query">
+              <h5>query参数: </h5>
               <table cellspacing="0">
                 <thead>
                   <th>参数名</th>
@@ -76,8 +76,8 @@
             <% }%>
 
             <% if (api.body && api.body.value) { %>
-            <div class="api-body">
-              <p>body参数: </p>
+            <div class="api api-body">
+              <h5>body参数: </h5>
               <table cellspacing="0">
                 <thead>
                   <th>参数名</th>
@@ -116,8 +116,8 @@
             <%
               if (api.success && api.success.length) {
             %>
-                <div class="api-success">
-                  <p>接口成功返回格式: </p>
+                <div class="api api-success">
+                  <h5>接口成功返回格式: </h5>
             <%
                 api.success.forEach(function (success) {
             %>
@@ -128,13 +128,11 @@
                 </div>
             <%
               }
-            %>
 
-            <%
               if (api.failure && api.failure.length) {
             %>
-              <div class="api-error">
-                <p>接口失败返回格式: </p>
+              <div class="api api-error">
+                <h5>接口失败返回格式: </h5>
             <%
                 api.failure.forEach(function (error) {
             %>
@@ -143,6 +141,21 @@
                 });
             %>
                 </div>
+            <%
+              }
+
+              if (api.example && api.example.length) {
+            %>
+              <div class="api api-example">
+                <h5>接口样例: </h5>
+            <%
+                api.example.forEach(function (example) {
+            %>
+                <div class="inner"> <%- example.value %> </div>
+            <%
+                });
+            %>
+              </div>
             <%
               }
             %>

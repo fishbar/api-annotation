@@ -45,7 +45,7 @@ describe('lib/parser', function () {
         expect(err[0].name).to.be('SyntaxError');
         expect(err[0].file).to.be('/test.js');
         expect(err[0].line).to.be(3);
-        expect(err[0].column).to.be(13);
+        expect(err[0].column).to.be(12);
         done();
       });
     });
@@ -62,7 +62,27 @@ describe('lib/parser', function () {
         expect(err[0].name).to.be('SyntaxError');
         expect(err[0].file).to.be('/test.js');
         expect(err[0].line).to.be(3);
-        expect(err[0].column).to.be(7);
+        expect(err[0].column).to.be(6);
+        done();
+      });
+    });
+
+    it('shoud work fine', function (done) {
+      var caseCode = `
+/**
+ * @api {get} /api/test
+ * @desc
+ *   hahaha
+ * @private
+ */
+exports.test = function() {}
+      `;
+      testMod.parse(caseCode, '/test_001.js', function (err, result) {
+        expect(err).to.be(null);
+        var apis = result['/test_001.js'];
+        expect(apis.length).to.be(1);
+        expect(apis[0].docInfo.private.value).to.be(true);
+        expect(apis[0].docInfo.desc.value.trim()).to.be('hahaha');
         done();
       });
     });

@@ -40,9 +40,26 @@ p {
   color: #808080;
   margin: 6px 0px;
 }
+.api h5 {
+  color: #666;
+  font-weight: bolder;
+  font-size: 14px;
+  margin: 15px 0px 5px 0px;
+}
+.api-example .inner {
+  background-color: #F0F7FB;
+  color: #16829A;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px 0 20px 0;
+}
+.api-example pre {
+  background: #fff;
+  margin: 10px 0px;
+}
 pre {
-  background-color: #4B6F7F;
-  color: #ffffff;
+  background-color: #F0F7FB;
+  color: #16829A;
   padding: 10px;
   border-radius: 6px;
   margin: 10px 0 20px 0;
@@ -54,9 +71,9 @@ pre.language-json {
 .sidebar {
   top: 0px;
   position: fixed;
-  width: 200px;
+  width: 220px;
   padding: 0px 10px 10px 10px;
-  background: #f6f6f6;
+  background: #F0F7FB;
   overflow: scroll;
 }
 .sidebar ul {
@@ -79,7 +96,7 @@ pre.language-json {
 .container {
   min-width: 600px;
   max-width: 760px;
-  margin-left: 220px;
+  margin-left: 240px;
   padding: 10px 20px;
 }
 .container .row {
@@ -107,7 +124,7 @@ pre.language-json {
 }
 .api-addr .url {
   border-radius: 0px 8px 8px 0px;
-  background: #e5e5e5;
+  background: #F0F7FB;
   padding: 0px 10px;
   font-weight: bolder;
   min-width: 200px;
@@ -117,19 +134,22 @@ pre.language-json {
 }
 
 .api-addr .method[data-type="get"] {
-  background-color: green;
+  background-color: #87C74D;
 }
 
 .api-addr .method[data-type="put"] {
-  background-color: #e5c500;
+  background-color: #E4CC39;
 }
 
 .api-addr .method[data-type="post"] {
-  background-color: #4070ec;
+  background-color: #43BDC9;
 }
 
 .api-addr .method[data-type="delete"] {
-  background-color: #ed0039;
+  background-color: #EA5A7C;
+}
+.api-addr .method[data-type="patch"] {
+  background-color: #60A2D7;
 }
 
 .container table {
@@ -169,7 +189,6 @@ pre.language-json {
 
 pre code {
   display: block;
-  font-family: "Source Code Pro";
   font-style: normal;
   font-weight: 400;
   word-wrap: normal;

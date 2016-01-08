@@ -4,7 +4,11 @@
       "docInfo": {
         "api": {
           "methods": [
-            "put"
+            "get",
+            "post",
+            "put",
+            "patch",
+            "delete"
           ],
           "token": "api",
           "url": "/end_with_flag"
