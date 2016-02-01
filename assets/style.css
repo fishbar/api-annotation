@@ -194,3 +194,30 @@ pre code {
   word-wrap: normal;
   white-space: pre;
 }
+.icon-help {
+  cursor: pointer;
+  color: #ccc;
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 0px 5px;
+}
+.helper {
+  z-index: 1000;
+  display: none;
+  top: 0px;
+  position: absolute;
+  background-color: #F0F7FB;
+  border: 1px solid #e0e7eB;
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+.helper .tit {
+  font-weight: bold;
+}
+.helper .param {
+  margin-left: 20px;
+}
+.helper .example {
+  color: #f30;
+  margin-left: 20px;
+}

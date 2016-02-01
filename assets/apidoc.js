@@ -53,6 +53,7 @@ function render(res) {
   });
   var menusMap = {};
   var menus = [];
+  var urlHeader = location.protocol + '//' + location.host;
   res.forEach(function (api) {
     var name = api.name.value;
     var level1 = name.substr(0, name.indexOf('.'));
@@ -67,9 +68,47 @@ function render(res) {
     menusMap[level1].sub.push({
       name: name
     });
+    api.api.url = urlHeader + api.api.url;
   });
 
   $('.sidebar .list').html(ejs.render($('#tpl-menu').html(), {menus: menus}));
 
   $('.container').html(ejs.render($('#tpl-api').html(), {apis: res}));
 }
+
+$('.container').on('click', 'div.row .icon-help', function (evt) {
+  var node = $(this);
+  var pos = node.position();
+  var width = node.width();
+  var parent = node.parent();
+  var method = parent.find('span.method:eq(0)').text().toUpperCase();
+  var url = parent.find('span.url').text();
+  var helper = $('.helper');
+  helper.find('.example').each(function () {
+    var n = $(this);
+    var txt = n.text();
+    txt = txt.replace(/\$\{(\w+)\}/g, function (m0, m1) {
+      var str;
+      switch (m1) {
+        case 'url':
+          str = url;
+          break;
+        case 'method':
+          str = method;
+          break;
+      }
+      return str;
+    });
+    n.text(txt);
+  })
+  helper.css({top: pos.top + 'px', left: (pos.left + width + 20) + 'px'}).show();
+  evt.stopPropagation();
+});
+
+$('.helper').on('click', function (evt) {
+  evt.stopPropagation();
+});
+
+$(document).on('click', function () {
+  $('.helper').hide();
+});

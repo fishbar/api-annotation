@@ -13,6 +13,21 @@
       <div class="list"></div>
     </nav>
     <div class="container"></div>
+    <div class="helper">
+      <h3>接口调用方法</h3>
+      <div>
+        <p class="tit">1. http header<p>
+        <p class="param">x-access-user<p>
+        <p class="param">x-access-token</p>
+        <p class="example">curl -X ${method} -H "x-access-user:$username" -H "x-access-token:$token" ${url}</p>
+      </div>
+      <div>
+        <p class="tit">2. queryString</p>
+        <p class="param">user</p>
+        <p class="param">token</p>
+        <p class="example">curl -X ${method} ${url}?user=$username&token=$token</p>
+      </div>
+    </div>
     <script id="tpl-menu" type="text/x-template">
       <ul>
       <%
@@ -46,7 +61,7 @@
               <p><%= api.desc ? api.desc.value : '' %></p>
             </div>
             <div class="api-addr">
-              <% api.api.methods.forEach(function (method) { %><span data-type="<%= method %>" class="method"><%= method %></span><% }); %><span class="url"><%= api.api.url %></span>
+              <% api.api.methods.forEach(function (method) { %><span data-type="<%= method %>" class="method"><%= method %></span><% }); %><span class="url"><%= api.api.url %></span> <span class="icon-help">?</span>
             </div>
             <% if (api.param) { %>
             <div class="api-param">
