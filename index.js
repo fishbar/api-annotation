@@ -139,6 +139,7 @@ exports.genDocument = function (ctrlPath, options, callback) {
  * @param  {Object}   options
  *                       apiListPath {String}
  *                       version {String}
+ *                       keepAll {Bool}  default false, will remove private api
  * @param  {Function} callback(err, apiList)
  */
 exports.genApiList = function (ctrlPath, options, callback) {

@@ -119,7 +119,7 @@ describe('index.js', function () {
         expect(err).to.be(null);
         expect(apis.length).to.above(0);
         expect(apis[0]).have.keys([
-          'url', 'method', 'name'
+          'url', 'method', 'name', 'type'
         ]);
       });
     });
