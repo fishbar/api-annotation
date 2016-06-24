@@ -1,0 +1,21 @@
+{
+  "syntax/case_006.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/test_security_setting"
+        },
+        "internal": {
+          "token": "internal",
+          "value": true
+        }
+      },
+      "exportsFn": "test",
+      "file": "syntax/case_006.js"
+    }
+  ]
+}

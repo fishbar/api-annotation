@@ -52,10 +52,11 @@ describe('index.js', function () {
       };
     afterEach(function () {
       try {
-        fs.unlinkSync(rfile);
+        // fs.unlinkSync(rfile);
       } catch (e) {
         // nothing to do
       }
+      mockRouter.cache = {};
     });
     it('should work fine', function () {
       var options = {
@@ -64,6 +65,7 @@ describe('index.js', function () {
       testMod.genRouter(path.join(__dirname, 'fixtures/syntax'), options, function (err, result) {
         expect(err).to.be(null);
         require(rfile)(mockRouter);
+        expect(mockRouter.cache['/test_security_setting']._security_).to.be('internal');
       });
     });
   });
