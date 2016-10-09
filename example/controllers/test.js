@@ -30,5 +30,3 @@
 exports.test = function () {
 
 };
-
-exports.

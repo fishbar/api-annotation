@@ -9,8 +9,12 @@
  * @name User.getUser
  * @description/desc
  *
+ * @private
+ * @public
+ * @internal
+ *
  * @param
- *   id {String} description
+ *   - id {String} description
  *
  * @query
  *   limit {}

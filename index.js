@@ -4,9 +4,10 @@
  * Create   : 2015-10-19 01:33:37
  * CopyRight 2015 (c) Fish And Other Contributors
  */
+'use strict';
+
 var fs = require('fs');
 var path = require('path');
-// var deepCamel = require('deep-camel');
 var parser = require('./lib/parser');
 var router = require('./lib/router');
 var doc = require('./lib/doc');
@@ -52,7 +53,7 @@ function processDir(fdir, callback, ifsub) {
   }
   // genDocFile();
   callback(errors.length ? errors : null, result);
-};
+}
 
 /**
  * 编译单个文件
@@ -61,7 +62,7 @@ function processFile(file, callback) {
   var code = fs.readFileSync(file).toString();
   var relPath = file;
   parser.parse(code, relPath, callback);
-};
+}
 
 /**
  * 传入控制器路径，解析出API的信息
@@ -151,8 +152,8 @@ exports.genApiList = function (ctrlPath, options, callback) {
     callback(null, result);
   } else {
     process(ctrlPath, function (err, result) {
-      var result = api.genApiList(result, options);
+      result = api.genApiList(result, options);
       callback(null, result);
     });
   }
-}
+};
