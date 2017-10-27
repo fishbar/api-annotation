@@ -21,9 +21,9 @@ describe('index.js', function () {
   });
   describe('index.process()', function () {
     it('should work fine', function () {
-      testMod.process(path.join(__dirname, 'fixtures/syntax'), function (err, result) {
+      testMod.process(path.join(__dirname, 'fixtures/syntax'), function (err, data) {
         expect(err).to.be(null);
-        expect(result).have.keys([
+        expect(data.result).have.keys([
           path.join(__dirname, './fixtures/syntax/case_001.js'),
           path.join(__dirname, './fixtures/syntax/case_003.js')
         ]);
@@ -31,7 +31,7 @@ describe('index.js', function () {
     });
     it('should work fine while some of the api annotation error', function () {
       var rfile = path.join(__dirname, 'auto_router.js');
-      testMod.process(path.join(__dirname, './mock'), function (err, result) {
+      testMod.process(path.join(__dirname, './mock'), function (err, data) {
         expect(err.length).to.be(1);
         expect(err[0].message).to.match(/http method not allowed/);
         expect(err[0].file).to.be(path.join(__dirname, './mock/ctrl1.js'));

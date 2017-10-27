@@ -1,0 +1,22 @@
+{
+  "syntax/case_007.js": [
+    {
+      "async": true,
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/test_async_func"
+        },
+        "internal": {
+          "token": "internal",
+          "value": true
+        }
+      },
+      "exportsFn": "test",
+      "file": "syntax/case_007.js"
+    }
+  ]
+}

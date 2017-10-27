@@ -1,15 +1,49 @@
 # api-annotation
 like java annotation, using comments annotation,  generate both router binding script and apidoc
 
+## cli usage
+
+```
+api-annotation -o auto_router.js --doc ./document --api-version 1.0.0
+```
+
 ## programmable
 
 ```
 var apiAnn = require('api-annotation');
 
-var result = apiAnn.process();
+apiAnn.process(dir, (err, data) => {
 
-apiAnn.genRouter('./auto_router.js', result);
-apiAnn.genDoc('./documents/api/v1.0/', result);
+  // gen router file
+  apiAnn.genRouter(data, {
+
+  }, (err) => {
+    /**
+     * optional, only if you need custom the output router file
+     */
+    tpl: function(data) {},
+    routerFile: '', // router_file_path
+    version: '' // api version
+  });
+
+  // gen api document
+  apiAnn.genDocument(data, {
+    docPath: '',
+    version: '',
+    hook: () => {} // optional
+  }, (err) => {
+
+  });
+  // gen api list json
+  apiAnn.genApiList(data, {
+    apiListPath: '',
+    version: ''
+  }, (err) => {
+
+  });
+});
+
+
 ```
 
 ## Syntax

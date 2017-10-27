@@ -4,6 +4,7 @@
  * Create   : 2015-11-23 18:16:42
  * CopyRight 2015 (c) Fish And Other Contributors
  */
+'use strict';
 /**
  * api描述信息可以写在这里
  * @api {get} /test
@@ -27,6 +28,27 @@
  * @desc
  *   一个方法可以绑定多个路由，只要在方法前面出现多个api注释段
  */
+/**
+ * @api /test_wrap
+ * @nowrap
+ */
 exports.test = function () {
+
+};
+
+/**
+ * @api ~/.*test_regexp/
+ */
+/**
+ * @api ~/.*test_regexp1/
+ */
+exports.test = function () {
+
+};
+
+/**
+ * @api /test_async
+ */
+exports.testAsync = async function (req, callback) {
 
 };

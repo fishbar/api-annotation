@@ -1,5 +1,7 @@
 /** do not modify this file, genaratered by api-annotation **/
 'use strict';
+
+/*
 function process(fn, type, wrap, config) {
   if (type === 'public') {
     return fn;
@@ -14,12 +16,17 @@ function process(fn, type, wrap, config) {
     };
   }
 }
+*/
+function process(fn, type, wrap, config) {
+  return fn;
+}
 const ctrls = {
   './fixtures/syntax/case_001.js': require('./fixtures/syntax/case_001.js'),
   './fixtures/syntax/case_003.js': require('./fixtures/syntax/case_003.js'),
   './fixtures/syntax/case_004.js': require('./fixtures/syntax/case_004.js'),
   './fixtures/syntax/case_005.js': require('./fixtures/syntax/case_005.js'),
-  './fixtures/syntax/case_006.js': require('./fixtures/syntax/case_006.js')
+  './fixtures/syntax/case_006.js': require('./fixtures/syntax/case_006.js'),
+  './fixtures/syntax/case_007.js': require('./fixtures/syntax/case_007.js')
 };
 var config = {};
 
@@ -41,4 +48,5 @@ module.exports = function (router) {
   router.patch('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true, config), true);
   router.delete('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true, config), true);
   router.get('/test_security_setting', process(ctrls['./fixtures/syntax/case_006.js'].test, 'internal', true, config), true);
+  router.get('/test_async_func', process(ctrls['./fixtures/syntax/case_007.js'].test, 'internal', true, config), true);
 };

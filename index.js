@@ -42,8 +42,8 @@ function processDir(fdir, callback, ifsub) {
         if (err) {
           errors = errors.concat(err);
         }
-        res && Object.keys(res).forEach(function (f) {
-          result[f] = res[f];
+        res.result && Object.keys(res.result).forEach(function (f) {
+          result[f] = res.result[f];
         });
       });
     }
@@ -52,7 +52,7 @@ function processDir(fdir, callback, ifsub) {
     return callback(errors.length ? errors : null, result);
   }
   // genDocFile();
-  callback(errors.length ? errors : null, result);
+  callback(errors.length ? errors : null, {base: fdir, result: result});
 }
 
 /**
@@ -61,7 +61,9 @@ function processDir(fdir, callback, ifsub) {
 function processFile(file, callback) {
   var code = fs.readFileSync(file).toString();
   var relPath = file;
-  parser.parse(code, relPath, callback);
+  parser.parse(code, relPath, (err, data) => {
+    callback(err, {base: path.dirname(file), result: data});
+  });
 }
 
 /**
@@ -101,11 +103,11 @@ exports.genRouter = function (ctrlPath, options, callback) {
     rContent = router.genRouter(ctrlPath, options, callback);
     callback(null, rContent);
   } else {
-    process(ctrlPath, function (err, result) {
+    process(ctrlPath, function (err, data) {
       if (err) {
         return callback(err);
       }
-      rContent = router.genRouter(result, options, callback);
+      rContent = router.genRouter(data, options, callback);
       callback(null, rContent);
     });
   }
@@ -116,7 +118,6 @@ exports.genRouter = function (ctrlPath, options, callback) {
  * @param  {String|Object}   ctrlPath  ctrlPath or process result
  * @param  {Object}   options
  *                       docPath    output doc path
- *                       base       ctrlpath
  *                       version    api version
  *                       hook       api hooks, adjust doc content
  * @param  {Function} callback(err, docObject)
@@ -128,9 +129,9 @@ exports.genDocument = function (ctrlPath, options, callback) {
     }
     doc.genDocument(ctrlPath, options, callback);
   } else {
-    process(ctrlPath, function (err, result) {
-      options.base = ctrlPath;
-      doc.genDocument(result, options, callback);
+    process(ctrlPath, function (err, data) {
+      options.ctrlPath = ctrlPath;
+      doc.genDocument(data, options, callback);
     });
   }
 };
@@ -151,8 +152,8 @@ exports.genApiList = function (ctrlPath, options, callback) {
     var result = api.genApiList(ctrlPath, options);
     callback(null, result);
   } else {
-    process(ctrlPath, function (err, result) {
-      result = api.genApiList(result, options);
+    process(ctrlPath, function (err, data) {
+      result = api.genApiList(data, options);
       callback(null, result);
     });
   }

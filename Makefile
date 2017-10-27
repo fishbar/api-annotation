@@ -4,7 +4,7 @@ syntaxCase:
 	@touch test/fixtures/syntax/case_$(case).json
 
 test:
-	@./node_modules/.bin/mocha --recursive test
+	@npm test
 
 test-cov:
 	@./node_modules/.bin/mocha -r jscoverage --recursive test

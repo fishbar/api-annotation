@@ -10,44 +10,71 @@ program
   .version(pkg.version);
 
 program
-  .command('router <dir>')
-  .option('--tpl <value>', 'router文件模板')
+  .option('--tpl [value]', 'router文件模板')
   .option('-o --output <value>', 'output router file')
-  .action(function (dir, args) {
-    let tpl = args.tpl;
-    let output = args.output;
-    if (tpl) {
-      if (!path.isAbsolute(tpl)) {
-        tpl = path.join(cwd, tpl);
-      }
-      try {
-        tpl = require(tpl);
-      } catch (e) {
-        console.log('require tpl file failed:' + e.message);
-        process.exit(1);
-      }
-    }
-    if (args.output) {
-      if (!path.isAbsolute(output)) {
-        output = path.join(cwd, output);
-      }
+  .option('--doc <path>', 'gen doc to path')
+  .option('-api-version <version>', 'app version')
+  .parse(process.argv);
+
+let tpl = program.tpl;
+let output = program.output;
+let doc = program.doc;
+let version = program.apiVersion;
+let dir = program.args[0];
+
+if (tpl) {
+  if (!path.isAbsolute(tpl)) {
+    tpl = path.join(cwd, tpl);
+  }
+  try {
+    tpl = require(tpl);
+  } catch (e) {
+    console.log('require tpl file failed:' + e.message); // eslint-disable-line
+    process.exit(1);
+  }
+}
+if (output) {
+  if (!path.isAbsolute(output)) {
+    output = path.join(cwd, output);
+  }
+} else {
+  output = path.join(cwd, './auto_router.js');
+}
+
+if (!path.isAbsolute(dir)) {
+  dir = path.join(cwd, dir);
+}
+
+apiAnnotation.process(dir, function (err, data) {
+  /**
+   * 产生路由
+   */
+  let routerOptions = {
+    tpl: tpl,
+    routerFile: output,
+    version: version
+  };
+
+  apiAnnotation.genRouter(data.result, routerOptions, (err) => {
+    if (err) {
+      console.log('ERROR', err); // eslint-disable-line
     } else {
-      output = path.join(cwd, './auto_router.js');
+      console.log('SUCCESS'); // eslint-disable-line
     }
-    if (!path.isAbsolute(dir)) {
-      dir = path.join(cwd, dir);
-    }
-    apiAnnotation.genRouter(dir, {
-      tpl: tpl,
-      routerFile: output,
-      version: pkg.version
-    }, function (err) {
-      if (err) {
-        console.log('ERROR', err);
-      } else {
-        console.log('SUCCESS');
-      }
-    });
   });
 
-program.parse(process.argv);
+  if (doc) {
+    let docOptions = {
+      ctrlPath: dir,
+      docPath: doc,
+      version: version
+    };
+    apiAnnotation.genDocument(data.result, docOptions, (err) => {
+      if (err) {
+        console.log('ERROR', err); // eslint-disable-line
+      } else {
+        console.log('SUCCESS'); // eslint-disable-line
+      }
+    });
+  }
+});
