@@ -124,9 +124,7 @@ exports.genRouter = function (ctrlPath, options, callback) {
  */
 exports.genDocument = function (ctrlPath, options, callback) {
   if (typeof ctrlPath === 'object') {
-    if (!options.base) {
-      throw new Error('genDocument should set options.base options');
-    }
+    options.ctrlPath = ctrlPath.base;
     doc.genDocument(ctrlPath, options, callback);
   } else {
     process(ctrlPath, function (err, data) {

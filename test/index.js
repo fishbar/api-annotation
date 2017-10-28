@@ -10,15 +10,6 @@ var path = require('path');
 var fs = require('xfs');
 
 describe('index.js', function () {
-  describe.skip('index.resolvePath()', function () {
-    it('should work fine', function () {
-      var result;
-      result = testMod.resolvePath('/a/b/c', '/a/d/e');
-      expect(result).to.be('../../d/e');
-      result = testMod.resolvePath('/a', '/e');
-      expect(result).to.be('./e');
-    });
-  });
   describe('index.process()', function () {
     it('should work fine', function () {
       testMod.process(path.join(__dirname, 'fixtures/syntax'), function (err, data) {

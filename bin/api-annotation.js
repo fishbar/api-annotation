@@ -55,7 +55,7 @@ apiAnnotation.process(dir, function (err, data) {
     version: version
   };
 
-  apiAnnotation.genRouter(data.result, routerOptions, (err) => {
+  apiAnnotation.genRouter(data, routerOptions, (err) => {
     if (err) {
       console.log('ERROR', err); // eslint-disable-line
     } else {
@@ -69,7 +69,7 @@ apiAnnotation.process(dir, function (err, data) {
       docPath: doc,
       version: version
     };
-    apiAnnotation.genDocument(data.result, docOptions, (err) => {
+    apiAnnotation.genDocument(data, docOptions, (err) => {
       if (err) {
         console.log('ERROR', err); // eslint-disable-line
       } else {
