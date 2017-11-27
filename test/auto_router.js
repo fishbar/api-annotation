@@ -17,7 +17,7 @@ function process(fn, type, wrap, config) {
   }
 }
 */
-function process(fn, type, wrap, config) {
+function defaultProcess(fn, type, wraped) {
   return fn;
 }
 const ctrls = {
@@ -30,23 +30,26 @@ const ctrls = {
 };
 var config = {};
 
-module.exports = function (router) {
-  router.get('/api/${version}/hello', process(ctrls['./fixtures/syntax/case_001.js'].hello, 'private', true, config), true);
-  router.get('/api/${version}/hello', process(ctrls['./fixtures/syntax/case_003.js'].hello, 'public', true, config), true);
-  router.get('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true, config), true);
-  router.post('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true, config), true);
-  router.put('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true, config), true);
-  router.patch('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true, config), true);
-  router.delete('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true, config), true);
-  router.patch('/end_with_success', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true, config), true);
-  router.delete('/end_with_json', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true, config), true);
-  router.post('/end_with_error', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true, config), true);
-  router.get('/end_with_name', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true, config), true);
-  router.get('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true, config), true);
-  router.post('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true, config), true);
-  router.put('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true, config), true);
-  router.patch('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true, config), true);
-  router.delete('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true, config), true);
-  router.get('/test_security_setting', process(ctrls['./fixtures/syntax/case_006.js'].test, 'internal', true, config), true);
-  router.get('/test_async_func', process(ctrls['./fixtures/syntax/case_007.js'].test, 'internal', true, config), true);
+module.exports = function (router, process) {
+  if (!process) {
+    process = defaultProcess;
+  }
+  router.get('/api/${version}/hello', process(ctrls['./fixtures/syntax/case_001.js'].hello, 'private', true), true);
+  router.get('/api/${version}/hello', process(ctrls['./fixtures/syntax/case_003.js'].hello, 'public', true), true);
+  router.get('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true), true);
+  router.post('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true), true);
+  router.put('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true), true);
+  router.patch('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true), true);
+  router.delete('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true), true);
+  router.patch('/end_with_success', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true), true);
+  router.delete('/end_with_json', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true), true);
+  router.post('/end_with_error', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true), true);
+  router.get('/end_with_name', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true), true);
+  router.get('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true), true);
+  router.post('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true), true);
+  router.put('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true), true);
+  router.patch('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true), true);
+  router.delete('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true), true);
+  router.get('/test_security_setting', process(ctrls['./fixtures/syntax/case_006.js'].test, 'internal', true), true);
+  router.get('/test_async_func', process(ctrls['./fixtures/syntax/case_007.js'].test, 'internal', true), true);
 };
