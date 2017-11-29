@@ -36,11 +36,24 @@ describe('index.js', function () {
     var mockRouter = {
       cache: {}
     };
-    mockRouter.get = mockRouter.post =
-      mockRouter.delete = mockRouter.put =
-      mockRouter.patch = function (path, fn) {
-        this.cache[path] = fn;
-      };
+    mockRouter.get = function (path, fn) {
+      this.cache['get_' + path] = fn;
+    };
+    mockRouter.post = function (path, fn) {
+      this.cache['post_' + path] = fn;
+    };
+    mockRouter.delete = function (path, fn) {
+      this.cache['delete_' + path] = fn;
+    }
+    mockRouter.put = function (path, fn) {
+      this.cache['put_' + path] = fn;
+    };
+    mockRouter.patch = function (path, fn) {
+      this.cache['patch_' + path] = fn;
+    };
+    mockRouter.option = function (path, fn) {
+      this.cache['option_' + path] = fn;
+    };
     afterEach(function () {
       try {
         // fs.unlinkSync(rfile);
@@ -56,7 +69,9 @@ describe('index.js', function () {
       testMod.genRouter(path.join(__dirname, 'fixtures/syntax'), options, function (err, result) {
         expect(err).to.be(null);
         require(rfile)(mockRouter);
-        // expect(mockRouter.cache['/test_security_setting']._security_).to.be('internal');
+        expect(typeof mockRouter.cache['get_/test']).to.be('function');
+        expect(typeof mockRouter.cache['post_/test']).to.be('function');
+        expect(typeof mockRouter.cache['delete_/test']).to.be('function');
       });
     });
   });
