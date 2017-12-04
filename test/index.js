@@ -27,6 +27,17 @@ describe('index.js', function () {
         expect(err[0].message).to.match(/http method not allowed/);
         expect(err[0].file).to.be(path.join(__dirname, './mock/ctrl1.js'));
         expect(err[0].message).to.match(/http method not allowed: unknow/);
+
+        let ctrl11 = path.join(__dirname, './mock/sub/ctrl11.js');
+        let ctrl10 = path.join(__dirname, './mock/sub/ctrl10.js');
+        let ctrl0 = path.join(__dirname, './mock/ctrl0.js');
+        let ctrl1 = path.join(__dirname, './mock/ctrl1.js');
+        let ctrl2 = path.join(__dirname, './mock/ctrl2.js');
+        expect(data.result[ctrl0].length).to.eql(1);
+        expect(data.result[ctrl1]).to.eql(undefined);
+        expect(data.result[ctrl2]).to.eql(undefined);
+        expect(data.result[ctrl10].length).to.eql(1);
+        expect(data.result[ctrl11].length).to.eql(2);
       });
     });
   });

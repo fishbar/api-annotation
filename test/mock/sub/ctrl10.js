@@ -5,7 +5,7 @@
  * CopyRight 2015 (c) Fish And Other Contributors
  */
 /**
- * @api {get} /test
+ * @api {get} /sub/test
  */
 exports.test = function () {
 
