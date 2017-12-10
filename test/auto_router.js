@@ -26,7 +26,8 @@ const ctrls = {
   './fixtures/syntax/case_004.js': require('./fixtures/syntax/case_004.js'),
   './fixtures/syntax/case_005.js': require('./fixtures/syntax/case_005.js'),
   './fixtures/syntax/case_006.js': require('./fixtures/syntax/case_006.js'),
-  './fixtures/syntax/case_007.js': require('./fixtures/syntax/case_007.js')
+  './fixtures/syntax/case_007.js': require('./fixtures/syntax/case_007.js'),
+  './fixtures/syntax/case_008.js': require('./fixtures/syntax/case_008.js')
 };
 var config = {};
 
@@ -35,6 +36,7 @@ module.exports = function (router, process) {
     process = defaultProcess;
   }
   router.get('/test_security_setting', process(ctrls['./fixtures/syntax/case_006.js'].test, 'internal', true), true);
+  router.get('/test_raw', process(ctrls['./fixtures/syntax/case_008.js'].hello, 'public', false), false);
   router.put('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true), true);
   router.post('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true), true);
   router.patch('/test', process(ctrls['./fixtures/syntax/case_005.js'].hello, 'private', true), true);

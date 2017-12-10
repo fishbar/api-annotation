@@ -29,6 +29,6 @@
  * @failure
  *   {code: 'UNKNOWERROR', message: 'error message1'}
  */
-exports.hello = function () {
+exports.hello = function (req, callback) {
 
 };

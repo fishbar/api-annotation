@@ -1,0 +1,18 @@
+{
+  "syntax/case_008.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/test_raw"
+        },
+        "nowrap": true
+      },
+      "exportsFn": "hello",
+      "file": "syntax/case_008.js"
+    }
+  ]
+}

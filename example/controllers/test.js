@@ -52,3 +52,12 @@ exports.test = function () {
 exports.testAsync = async function (req, callback) {
 
 };
+
+/**
+ * @api /test_raw
+ */
+exports.raw = function (req, res, next) {
+
+};
+
+
