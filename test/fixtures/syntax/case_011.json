@@ -1,5 +1,5 @@
 {
-  "syntax/case_009.js": [
+  "syntax/case_011.js": [
     {
       "docInfo": {
         "api": {
@@ -7,11 +7,11 @@
             "get"
           ],
           "token": "api",
-          "url": "/hello"
+          "url": "/test_module_exports"
         }
       },
-      "exportsFn": "abc",
-      "file": "syntax/case_009.js"
+      "exportsFn": null,
+      "file": "syntax/case_011.js"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "syntax/case_010.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "post"
+          ],
+          "token": "api",
+          "url": "/arrow_func"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "test arrow_func"
+        }
+      },
+      "exportsFn": "arrow",
+      "file": "syntax/case_010.js"
+    }
+  ]
+}

@@ -83,6 +83,7 @@ describe('index.js', function () {
         expect(typeof mockRouter.cache['get_/test']).to.be('function');
         expect(typeof mockRouter.cache['post_/test']).to.be('function');
         expect(typeof mockRouter.cache['delete_/test']).to.be('function');
+        expect(mockRouter.cache['get_/test_module_exports'].toString()).to.match(/test_module_exports/);
       });
     });
   });
