@@ -13,7 +13,7 @@ program
   .option('--tpl [value]', 'router文件模板')
   .option('-o --output <value>', 'output router file')
   .option('--doc <path>', 'gen doc to path')
-  .option('-api-version <version>', 'app version')
+  .option('--api-version <version>', 'app version')
   .parse(process.argv);
 
 let tpl = program.tpl;
