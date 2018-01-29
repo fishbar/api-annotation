@@ -18,6 +18,7 @@
           "value": true
         },
         "body": {
+          "desc": "",
           "token": "body",
           "type": "json",
           "value": [
@@ -64,21 +65,23 @@
           ]
         },
         "query": {
+          "desc": "",
           "token": "query",
+          "type": null,
           "value": [
             {
-              "desc": "",
-              "indent": 2,
-              "name": "id",
-              "type": "Number"
+               "name": "id",
+               "type": "Number",
+               "format": null,
+               "desc": null
             },
             {
-              "desc": "",
-              "indent": 2,
-              "name": "name",
-              "type": "String"
+               "name": "name",
+               "type": "String",
+               "format": null,
+               "desc": null
             }
-          ]
+         ]
         },
         "success": [{
           "token": "success",

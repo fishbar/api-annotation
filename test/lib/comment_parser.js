@@ -101,7 +101,7 @@ describe('lib/comment_parser', function () {
       expect(result[0].token).to.be('name');
       expect(result[0].value).to.be('test');
       expect(result[1].value).to.be('test.abc');
-      expect(result[2].value).to.be(null);
+      expect(result[2].value).to.be('');
     });
   });
 
@@ -129,16 +129,12 @@ describe('lib/comment_parser', function () {
       var str = `
         @params test
         @params
-        @@
-        @
-        @params
       `;
       var result = testMod.parse(str);
-      expect(result.length).to.be(3);
+      expect(result.length).to.be(2);
       expect(result[0].token).to.be('params');
-      expect(result[0].value.trim()).to.be('test');
-      expect(result[1].value.trim()).to.match(/@@/);
-      expect(result[2].value.trim()).to.be('');
+      expect(result[0].desc.trim()).to.be('test');
+      expect(result[1].value.trim()).to.be('');
     });
   });
 
@@ -147,16 +143,12 @@ describe('lib/comment_parser', function () {
       var str = `
         @query test
         @query
-        @@
-        @
-        @query
       `;
       var result = testMod.parse(str);
-      expect(result.length).to.be(3);
+      expect(result.length).to.be(2);
       expect(result[0].token).to.be('query');
-      expect(result[0].value.trim()).to.be('test');
-      expect(result[1].value.trim()).to.match(/@@/);
-      expect(result[2].value.trim()).to.be('');
+      expect(result[0].desc.trim()).to.be('test');
+      expect(result[1].value.trim()).to.be('');
     });
   });
 
@@ -165,17 +157,13 @@ describe('lib/comment_parser', function () {
       var str = `
         @body:json test
         @body
-        @@
-        @
-        @body
       `;
       var result = testMod.parse(str);
-      expect(result.length).to.be(3);
+      expect(result.length).to.be(2);
       expect(result[0].token).to.be('body');
       expect(result[0].type).to.be('json');
-      expect(result[0].value.trim()).to.be('test');
-      expect(result[1].value.trim()).to.match(/@@/);
-      expect(result[2].value.trim()).to.be('');
+      expect(result[0].desc.trim()).to.be('test');
+      expect(result[1].value.trim()).to.be('');
     });
   });
 
