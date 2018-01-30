@@ -27,7 +27,8 @@ const ctrls = {
   './fixtures/syntax/case_005.js': require('./fixtures/syntax/case_005.js'),
   './fixtures/syntax/case_006.js': require('./fixtures/syntax/case_006.js'),
   './fixtures/syntax/case_007.js': require('./fixtures/syntax/case_007.js'),
-  './fixtures/syntax/case_008.js': require('./fixtures/syntax/case_008.js')
+  './fixtures/syntax/case_008.js': require('./fixtures/syntax/case_008.js'),
+  './fixtures/syntax/case_009.js': require('./fixtures/syntax/case_009.js')
 };
 var config = {};
 
@@ -52,5 +53,7 @@ module.exports = function (router, process) {
   router.get('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true), true);
   router.delete('/end_with_flag', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'private', true), true);
   router.post('/end_with_error', process(ctrls['./fixtures/syntax/case_004.js'].hello, 'public', true), true);
+  router.post('/api/${version}/user/:id', process(ctrls['./fixtures/syntax/case_009.js'].hello, 'private', false), false);
+  router.get('/api/${version}/user/:id', process(ctrls['./fixtures/syntax/case_009.js'].hello, 'private', false), false);
   router.get('/api/${version}/hello', process(ctrls['./fixtures/syntax/case_003.js'].hello, 'public', true), true);
 };

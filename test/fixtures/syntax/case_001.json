@@ -70,16 +70,16 @@
           "type": null,
           "value": [
             {
-               "name": "id",
-               "type": "Number",
-               "format": null,
-               "desc": null
+              "desc": "",
+              "indent": 2,
+              "name": "id",
+              "type": "Number"
             },
             {
-               "name": "name",
-               "type": "String",
-               "format": null,
-               "desc": null
+              "desc": "",
+              "indent": 2,
+              "name": "name",
+               "type": "String"
             }
          ]
         },
