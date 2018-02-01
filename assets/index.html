@@ -63,10 +63,10 @@
             <div class="api-addr">
               <% api.api.methods.forEach(function (method) { %><span data-type="<%= method %>" class="method"><%= method %></span><% }); %><span class="url"><%= api.api.url %></span> <span class="icon-help">?</span>
             </div>
-            <% if (api.param) { %>
+            <% if (api.params) { %>
             <div class="api-param">
               <pre >
-                <%= JSON.stringify(api.param.value) %>
+                <%= JSON.stringify(api.params.value) %>
               </pre>
             </div>
             <% } %>

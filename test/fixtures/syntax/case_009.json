@@ -1,0 +1,142 @@
+{
+  "syntax/case_009.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "post",
+            "get"
+          ],
+          "token": "api",
+          "url": "/api/${version}/user/:id"
+        },
+        "body": {
+          "desc": "",
+          "token": "body",
+          "type": "json",
+          "value": [
+            {
+              "desc": "s",
+              "indent": 3,
+              "name": "name",
+              "type": "Object"
+            }
+          ]
+        },
+        "desc": {
+          "token": "desc",
+          "value": " 获取用户信息\n"
+        },
+        "example": [
+          {
+            "token": "example",
+            "value": ""
+          }
+        ],
+        "failure": [
+          {
+            "token": "failure",
+            "type": "json",
+            "value": "description"
+          }
+        ],
+        "internal": {
+          "token": "internal",
+          "value": true
+        },
+        "name": {
+          "token": "name",
+          "value": "获取用户信息"
+        },
+        "nowrap": true,
+        "params": {
+          "desc": "",
+          "token": "params",
+          "type": null,
+          "value": [
+            {
+              "desc": "用户ID",
+              "format": null,
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "desc": "用户状态",
+              "format": null,
+              "name": "status",
+              "type": "Boolean"
+            }
+          ]
+        },
+        "private": {
+          "token": "private",
+          "value": true
+        },
+        "public": {
+          "token": "public",
+          "value": true
+        },
+        "query": {
+          "desc": "",
+          "token": "query",
+          "type": null,
+          "value": [
+            {
+              "desc": "se",
+              "format": null,
+              "name": "limit",
+              "properties": [
+                {
+                  "desc": "must be urlencoded",
+                  "format": null,
+                  "items": {
+                    "type": "String"
+                  },
+                  "name": "search",
+                  "type": "Array"
+                },
+                {
+                  "desc": "must be urlencoded",
+                  "format": null,
+                  "name": "search1",
+                  "type": "String"
+                }
+              ],
+              "type": "Object"
+            },
+            {
+              "desc": "must be urlencoded",
+              "format": "dataTime",
+              "name": "createTime",
+              "type": "String"
+            }
+          ]
+        },
+        "success": [
+          {
+            "token": "success",
+            "type": "json",
+            "value": [
+              {
+                "desc": "must be urlencoded",
+                "format": null,
+                "items": {
+                  "type": "String"
+                },
+                "name": "search",
+                "type": "Array"
+              }
+            ]
+          },
+          {
+            "token": "success",
+            "type": "json",
+            "value": "description"
+          }
+        ]
+      },
+      "exportsFn": "hello",
+      "file": "syntax/case_009.js"
+    }
+  ]
+}
