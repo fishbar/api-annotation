@@ -48,7 +48,7 @@ describe('lib/parser', function () {
           expect(err[0].line).to.be(3);
           expect(err[0].column).to.be(12);
         }
-        
+
         done();
       });
     });

@@ -1,1 +1,21 @@
-{}
+{
+  "syntax/case_012.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/desc"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "descdesc"
+        }
+      },
+      "exportsFn": "desc",
+      "file": "syntax/case_012.js"
+    }
+  ]
+}
