@@ -5,6 +5,9 @@
  * CopyRight 2015 (c) Fish And Other Contributors
  */
 'use strict';
+
+let a = {hello: 1};
+let b = {...a};
 /**
  * api描述信息可以写在这里
  * @api {get} /test
