@@ -29,7 +29,7 @@ if (tpl) {
   try {
     tpl = require(tpl);
   } catch (e) {
-    console.error('require tpl file failed:' + e.message); // eslint-disable-line
+    console.log('require tpl file failed:' + e.message); // eslint-disable-line
     process.exit(1);
   }
 }
@@ -45,7 +45,7 @@ if (!path.isAbsolute(dir)) {
   dir = path.join(cwd, dir);
 }
 
-apiAnnotation.process(dir, function (errs, data) {
+apiAnnotation.process(dir, function (err, data) {
   /**
    * 产生路由
    */
@@ -55,18 +55,16 @@ apiAnnotation.process(dir, function (errs, data) {
     version: version
   };
 
-  if (errs) {
-    errs.forEach((err, index) => {
-      console.error('ERROR' + (index + 1), 'file:', err.file, 'line:', err.loc.line, ',', err.loc.column);
-      console.error(err.message);
+  if (err) {
+    err.forEach((e) => {
+      console.log('ERROR', e);
     });
-    return process.exit(1);
+    return;
   }
 
   apiAnnotation.genRouter(data, routerOptions, (err) => {
     if (err) {
-      console.error('ERROR', err); // eslint-disable-line
-      process.exit(1);
+      console.log('ERROR', err); // eslint-disable-line
     } else {
       console.log('SUCCESS'); // eslint-disable-line
     }
@@ -80,8 +78,7 @@ apiAnnotation.process(dir, function (errs, data) {
     };
     apiAnnotation.genDocument(data, docOptions, (err) => {
       if (err) {
-        console.error('ERROR', err); // eslint-disable-line
-        process.exit(1);
+        console.log('ERROR', err); // eslint-disable-line
       } else {
         console.log('SUCCESS'); // eslint-disable-line
       }
