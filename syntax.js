@@ -4,6 +4,7 @@
  * Create   : 2015-10-19 01:33:37
  * CopyRight 2015 (c) Fish And Other Contributors
  */
+
 /**
  * @api {get|post|PATCH|...} /api/${version}/user/:id
  * @name User.getUser
@@ -32,5 +33,7 @@
  * @failure/error
  *
  * @example
+ *
+ * @disable
  *
  */

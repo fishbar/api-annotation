@@ -13,6 +13,7 @@ describe('cli', function () {
     it('should work fine', function () {
       let cmd = `${exec} -o ${tmpRouter} --doc ${tmpDoc} --api-version 0.0.1 ${targetDir}`;
       let result = cp.execSync(cmd);
+      xfs.readFileSync(tmpRouter).toString().match(/\/\/@disabled router/);
       xfs.sync().rm(tmpRouter);
       xfs.sync().rm(tmpDoc);
     });

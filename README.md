@@ -174,5 +174,6 @@ make syntaxCase case=00x
 @private
 @internal
 @public
+@disable
 ```
 

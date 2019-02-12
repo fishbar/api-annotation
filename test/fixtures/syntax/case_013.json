@@ -1,0 +1,21 @@
+{
+  "syntax/case_013.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/case_13"
+        },
+        "desc": {
+          "token": "desc",
+          "value": "解构"
+        }
+      },
+      "exportsFn": "abc",
+      "file": "syntax/case_013.js"
+    }
+  ]
+}

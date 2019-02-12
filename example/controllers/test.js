@@ -63,4 +63,13 @@ exports.raw = function (req, res, next) {
 
 };
 
+/**
+ * @api /disable
+ * @disable
+ */
+exports.disable = function (req, res) {
+
+};
+
+
 

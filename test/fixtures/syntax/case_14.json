@@ -1,0 +1,21 @@
+{
+  "syntax/case_14.js": [
+    {
+      "docInfo": {
+        "api": {
+          "methods": [
+            "get"
+          ],
+          "token": "api",
+          "url": "/case_14"
+        },
+        "disable": {
+          "token": "disable",
+          "value": true
+        }
+      },
+      "exportsFn": "abc",
+      "file": "syntax/case_14.js"
+    }
+  ]
+}
