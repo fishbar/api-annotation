@@ -19,7 +19,7 @@
   "dependencies": {
     "debug": "~2.2.0",
     "esprima": "~2.6.0",
-    "marked": "~0.3.5",
+    "marked": "~0.4.0",
     "xfs": "~0.2.0"
   },
   "devDependencies": {
